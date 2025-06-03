@@ -15,8 +15,9 @@
 
 ## 2.11-SNAPSHOT
 
-* import restore-dump.sh from `typing-ex` project.
-* reproduct `qa.melt` in localhost. let's start.
+- import restore-dump.sh from `typing-ex` project.
+- reproduct `qa.melt` in localhost. let's start.
+- .gitignored `/db-dump/*.dump`.
 
 ## 2.10.773 / 2024-12-14
 
