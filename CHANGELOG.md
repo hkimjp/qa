@@ -13,8 +13,12 @@
 - filter の初期値を環境変数でもつ。admin がコントロールできる。
   filter から self を抜いて適用する。
 
+## 2.11-SNAPSHOT
 
-## v2.10.773 / 2024-12-14
+* import restore-dump.sh from `typing-ex` project.
+* reproduct `qa.melt` in localhost. let's start.
+
+## 2.10.773 / 2024-12-14
 
 - fixed bug: goods の表示順が並んでいない。
 
@@ -29,11 +33,11 @@
      ret))
 ```
 
-## v2.10.767 / 2024-10-06
+## 2.10.767 / 2024-10-06
 
 - readers にユニークなリーダーの数を追加表示。
 
-## v2.9.762 / 2024-10-05
+## 2.9.762 / 2024-10-05
 
 - css for pre.code.
 - QA_DEV=true 時の認証は (= login "hkimura") のみ。
@@ -44,7 +48,7 @@
    [com.taoensso/timbre "6.5.0"]
 ```
 
-## v2.8.728 / 2024-09-20
+## 2.8.728 / 2024-09-20
 
 
 
@@ -95,12 +99,12 @@
    [ring/ring-jetty-adapter "1.12.2"]
 ```
 
-## v2.7.719 / 2024-09-12
+## 2.7.719 / 2024-09-12
 
 - gave up to clearing up the last page contents after preview-> submit.
   instead, introduce dev.preview class and provide css.
 
-## v2.7.710 / 2024-09-12
+## 2.7.710 / 2024-09-12
 
 - color pre code
 
@@ -113,7 +117,7 @@ pre code {
 }
 ```
 
-## v2.7.703 / 2024-08-26
+## 2.7.703 / 2024-08-26
 Compiling with jdk17 instead of preparing docker?
 - Delete `Makrdown Preview` button.
 - make uberjar
@@ -128,10 +132,10 @@ uberjar:
   image: clojure:temurin-17-lein-jammy
 ```
 
-## v2.6.697 / 2024-04-20
+## 2.6.697 / 2024-04-20
 - markdown 道場の切り替え。mp.melt にリンクする。
 
-## v2.6.693 / 2024-04-20
+## 2.6.693 / 2024-04-20
 - マージミス。
 - docker-compose.yml: image: postgres:14.11
   ```
@@ -142,7 +146,7 @@ uberjar:
 - bind mount /root/.m2, not /home/vscode/.m2
 - updated bump-version.sh, updating CHANGELOG.md.
 
-## v2.5.681 / 2024-04-16
+## 2.5.681 / 2024-04-16
 - core/question-start を環境変数 QA_STARTで。
 - lein clean
 - clj -Tantq outdated
