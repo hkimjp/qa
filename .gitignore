@@ -18,6 +18,7 @@ pom.xml.asc
 /start-stop
 /db-dumps/old/
 /db-dumps/*.sql
+/db-dumps/*.dump
 /db
 /.clj-kondo/.cache
 /.lsp/.cache
