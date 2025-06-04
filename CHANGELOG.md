@@ -13,6 +13,10 @@
 - filter の初期値を環境変数でもつ。admin がコントロールできる。
   filter から self を抜いて適用する。
 
+## 2.12-SNAPSHOT
+
+- added `/db-dumps/restore-dump.sh`
+- gitignore `/db-dumps/*.dump`
 
 ## v2.10.773 / 2024-12-14
 
