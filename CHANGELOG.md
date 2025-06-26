@@ -13,11 +13,11 @@
 - filter の初期値を環境変数でもつ。admin がコントロールできる。
   filter から self を抜いて適用する。
 
-## 2.11-SNAPSHOT
+## 2.12.775 / 2025-06-04
 
-- import restore-dump.sh from `typing-ex` project.
-- reproduct `qa.melt` in localhost. let's start.
-- .gitignored `/db-dump/*.dump`.
+- added `/db-dumps/restore-dump.sh`
+- gitignore `/db-dumps/*.dump`
+- link `/my-goods/:login`
 
 ## 2.10.773 / 2024-12-14
 
