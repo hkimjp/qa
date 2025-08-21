@@ -11,6 +11,8 @@
     [:get "/login"] [:qa.handler.auth/login]
     [:post "/login" {params :form-params}] [:qa.handler.auth/login-post params]
     [:get "/logout"] [:qa.handler.auth/logout]
+    ;; display self points. rewrite and reuse in every class.
+    [:get "/points"] ^:auth [:qa.handler.core/points]
     ;; questions
     [:get  "/q"] ^:auth [:qa.handler.core/question-new]
     [:post "/q" {params :multipart-params}] [:qa.handler.core/question-create params]
@@ -33,8 +35,6 @@
     [:get "/readers/" path "/" n] ^:auth [:qa.handler.core/readers path ^int n]
     [:get  "/md"] ^:auth [:qa.handler.core/md]
     [:post "/md" {params :form-params}] [:qa.handler.core/md-post params]
-    [:get "/points"] ^:auth [:qa.handler.core/points]
-
     ;; post?
     [:get "/since"] [:qa.handler.core/set-since]
     [:get "/since/" timestamp] [:qa.handler.core/since timestamp]}}
@@ -43,14 +43,13 @@
 
   :qa.handler.core/index {}
 
-  :qa.handler.core/points {}
-
   ;; using ex-typing's database.
   :qa.handler.auth/login {}
   :qa.handler.auth/login-post {:db #ig/ref :duct.database/sql}
   :qa.handler.auth/logout {}
-
   :qa.handler.core/about {}
+
+  :qa.handler.core/points {}
 
   :qa.handler.core/question-new {}
   :qa.handler.core/question-create {:db #ig/ref :duct.database/sql}
