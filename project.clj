@@ -7,7 +7,7 @@
   [[buddy/buddy-auth "3.0.323"]
    [buddy/buddy-hashers "2.0.167"]
    [clojure.java-time "1.4.3"]
-   [com.github.seancorfield/next.jdbc "1.3.1048"]
+   [com.github.seancorfield/next.jdbc "1.3.939"]
    [com.fasterxml.jackson.core/jackson-core "2.17.2"]
    [duct/core "0.8.1"]
    [duct/module.ataraxy "0.3.0"]
@@ -30,8 +30,7 @@
    [ring/ring-jetty-adapter "1.12.2"]
    ;;
    [dev.weavejester/medley "1.8.1"]
-   [com.taoensso/timbre "6.5.0"]
-   ]
+   [com.taoensso/timbre "6.5.0"]]
 
   :plugins [[duct/lein-duct "0.12.3"]]
   :main ^:skip-aot qa.main

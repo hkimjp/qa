@@ -47,6 +47,13 @@
 |             | ring/ring-defaults                      | 0.5.0    | 0.6.0    |
 |             | ring/ring-jetty-adapter                 | 1.12.2   | 1.14.2   |
 
+- resumed next.jdbc 1.3.939
+
+    Syntax error compiling at (next/jdbc/default_options.clj:11:1).
+    No such var: p/Wrapped
+
+
+
 ## 2.12.775 / 2025-06-04
 
 - added `/db-dumps/restore-dump.sh`
