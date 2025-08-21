@@ -13,11 +13,39 @@
 - filter の初期値を環境変数でもつ。admin がコントロールできる。
   filter から self を抜いて適用する。
 
+
+
 ## 2.13-SNAPSHOT / 2025-08-21
 
 - python-a の結果を表示する。
 - qa.handler.core/points を改変した。
 - can use `info`, `debug` for logging.
+- updated libraries which are same minor versions only.
+
+    - clojure.java-time
+    - next.jdbc
+    - duct/module.web
+    - markdown-clj
+    - postgres
+    - clojure
+
+| :file       | :name                                   | :current | :latest  |
+|-------------|-----------------------------------------|----------|----------|
+| project.clj | cheshire/cheshire                       | 5.13.0   | 6.0.0    |
+|             | clojure.java-time/clojure.java-time     | 1.4.2    | 1.4.3    |
+|             | com.fasterxml.jackson.core/jackson-core | 2.17.2   | 2.19.2   |
+|             | com.github.seancorfield/next.jdbc       | 1.3.939  | 1.3.1048 |
+|             | com.taoensso/timbre                     | 6.5.0    | 6.7.1    |
+|             | duct/module.web                         | 0.7.3    | 0.7.4    |
+|             | hiccup/hiccup                           | 1.0.5    | 2.0.0    |
+|             | integrant/repl                          | 0.3.3    | 0.4.0    |
+|             | markdown-clj/markdown-clj               | 1.12.1   | 1.12.4   |
+|             | org.clojure/clojure                     | 1.12.0   | 1.12.1   |
+|             | org.postgresql/postgresql               | 42.7.4   | 42.7.7   |
+|             | ring/ring-anti-forgery                  | 1.3.1    | 1.4.0    |
+|             | ring/ring-core                          | 1.12.2   | 1.14.2   |
+|             | ring/ring-defaults                      | 0.5.0    | 0.6.0    |
+|             | ring/ring-jetty-adapter                 | 1.12.2   | 1.14.2   |
 
 ## 2.12.775 / 2025-06-04
 
