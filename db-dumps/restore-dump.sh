@@ -7,4 +7,3 @@ fi
 dropdb qa
 createdb qa
 pg_restore -U postgres -h localhost -Fc -d qa $1
-
