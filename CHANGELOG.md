@@ -13,7 +13,7 @@
 - filter の初期値を環境変数でもつ。admin がコントロールできる。
   filter から self を抜いて適用する。
 
-## 2.13-SNAPSHOT
+## 2.13-SNAPSHOT / 2025-08-21
 
 - python-a の結果を表示する。
 - qa.handler.core/points を改変した。
