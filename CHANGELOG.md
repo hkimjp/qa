@@ -1,9 +1,9 @@
 # Question and Answers
 
 ## Unreleased
-- 全文検索（投稿や回答があったときにデータベースをアップデートする仕組み）
-- (reset) で毎回、クラッシュ。lein repl だとクラッシュは減る。
-  duct じゃなく、VScode の REPL がダメか？
+
+- 投稿や回答があったときにデータベースをアップデートする仕組み
+- (reset) で毎回、クラッシュ。lein clean のあとはクラッシュは減る。
 - いいねにアラートつけるか
 ```clj
 [:a {:href (str "/good/" (:id q) "/" (:id a))
@@ -12,6 +12,11 @@
 ```
 - filter の初期値を環境変数でもつ。admin がコントロールできる。
   filter から self を抜いて適用する。
+
+
+## 2.13-SNAPSHOT
+
+- python-a の結果を表示する。
 
 ## 2.12.775 / 2025-06-04
 

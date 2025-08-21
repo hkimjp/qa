@@ -11,6 +11,8 @@
     [:get "/login"] [:qa.handler.auth/login]
     [:post "/login" {params :form-params}] [:qa.handler.auth/login-post params]
     [:get "/logout"] [:qa.handler.auth/logout]
+    ;; python-a
+    [:get "/python-a"] ^:autth [:qa.handler.python_a/python_a]
     ;; questions
     [:get  "/q"] ^:auth [:qa.handler.core/question-new]
     [:post "/q" {params :multipart-params}] [:qa.handler.core/question-create params]
