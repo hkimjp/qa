@@ -4,6 +4,6 @@ if [ -z "$1" ]; then
   exit
 fi
 
-dropdb qa
-createdb qa
-pg_restore -U postgres -h localhost -Fc -d qa $1
+#dropdb qa
+#createdb qa
+pg_restore -U postgres -h db --port 15432 -Fc -d qa $1
