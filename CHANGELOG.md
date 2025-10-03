@@ -15,6 +15,8 @@
 
 ## 2.14.0-SNAPSHOT (2025-10-02)
 
+- added /api/readers/:date
+- removed test/qa
 - docker
     - サーバーで sudo systemctl ... 使うよりいいかも。
     - postgres17をコンテナに同梱できる。

@@ -38,11 +38,11 @@
     ;; post?
     [:get "/since"] [:qa.handler.core/set-since]
     [:get "/since/" timestamp] [:qa.handler.core/since timestamp]
-    [:get "/api/since/" date] [:qa.handler.api/since date]}}
+    [:get "/api/readers/" date] [:qa.handler.api/readers date]}}
 
   :qa.middleware/auth {}
 
-  :qa.handler.api/since {:db #ig/ref :duct.database/sql}
+  :qa.handler.api/readers {:db #ig/ref :duct.database/sql}
 
   :qa.handler.core/index {}
 

@@ -12,18 +12,13 @@
    [qa.boundary.readers :as readers]
    [taoensso.timbre :refer [info]]))
 
-; (defmethod ig/init-key :qa.handler.core/readers [_ {:keys [db]}]
-;   (fn [{[_ path n] :ataraxy/result}]
-;     (readers-page (readers/fetch-readers db path n @since) @since)))
-
-(defmethod ig/init-key :qa.handler.api/since [_ {:keys [db]}]
+(defmethod ig/init-key :qa.handler.api/readers [_ {:keys [db]}]
   (fn [{[_ date] :ataraxy/result}]
-    (let [ret (->> (readers/fetch-readers db "qs" 0 date)
-                   (map :login)
-                   set
-                   vec)]
+    (let [ret (->> (readers/fetch-readers-on-date db date)
+                   (mapv :login))]
+      (info (str "ret: " ret))
       {:status 200
        :header {"content-type" "application/json"}
-       :body {:since (str vec)}})))
-
+       :body (str {:date date
+                   :readers ret})})))
 

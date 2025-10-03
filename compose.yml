@@ -7,7 +7,7 @@ services:
       - .:/usr/src/app
       - m2:/root/.m2
     ports:
-      - 3000:3000
+      - 3090:3000
     entrypoint: >
       sh -c "java --enable-native-access=ALL-UNNAMED -jar qa.jar"
       # sh -c "sleep infinity"
