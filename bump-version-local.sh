@@ -6,9 +6,14 @@ if [ -z "$1" ]; then
 fi
 
 
-gsed "s|^(\(defproject .+) .+|\1 \"$1\"|" project.clj
+if [ -x "${HOMEBREW_PREFIX}/bin/gsed" ]; then
+    SED="${HOMEBREW_PREFIX}/bin/gsed -E -i"
+else
+    SED="/usr/bin/sed -E -i"
+fi
+
+${SED} "s|^(\(defproject .+) .+|\1 \"$1\"|" project.clj
 
 now=`date '+%F %T'`
-gsed -e "s|(\(def \^:private version).*|\1 \"$1\")|" \
+${SED} -e "s|(\(def \^:private version).*|\1 \"$1\")|" \
        -e "s|(\(def \^:private updated).*|\1 \"$now\")|"  src/qa/view/page.clj
-

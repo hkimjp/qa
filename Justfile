@@ -19,10 +19,9 @@ run: uberjar
 	sh start.sh
 
 deploy: uberjar
-	scp target/qa-*-standalone.jar ${DEST}:qa/qa.jar
-#	ssh ${DEST} 'cd qa & docker compose restart'
-	ssh ${DEST} 'sudo systemctl restart qa'
-	ssh ${DEST} 'systemctl status qa'
+  scp target/qa-*-standalone.jar ${DEST}:qa/qa.jar
+  ssh ${DEST} 'sudo systemctl restart qa'
+  ssh ${DEST} 'systemctl status qa'
 
 eq: uberjar
 	scp target/qa-*-standalone.jar eq.local:qa/qa.jar
