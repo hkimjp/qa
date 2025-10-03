@@ -10,8 +10,8 @@
    [markdown.core :refer [md-to-html-string]]
    [ring.util.anti-forgery :refer [anti-forgery-field]]))
 
-(def ^:private version "v2.10.773")
-(def ^:private updated "2024-12-14 21:51:31")
+(def ^:private version "2.13.792")
+(def ^:private updated "2025-08-21 10:52:53")
 
 (def ^:private wrap-at 80)
 
@@ -273,14 +273,21 @@
        (ss 28 (:q a)) "..."]])))
 
 (defn readers-page [readers since]
-  (let [uniq-readers (->> (mapv :login readers)
-                          distinct)]
+  (let [uniq-readers (->> (map :login readers)
+                          distinct
+                          #_(mapv (fn [user]
+                                    [:a {:href (str "/my-goods/" user)} user])))]
     (page
      [:h2 "QA: Who read since " since]
      [:p "ほんと、みんな、QA 読まないんだな。点数稼ぎの 👍 は心が冷えるよ。"]
-     [:p (->> uniq-readers
-              (interpose " ")
-              (apply str))
+     [:p #_(->> uniq-readers
+                (interpose " ")
+                (apply str))
+      ; [[:a {:href "/my-goods/hkimura"} "hkimura"]
+      ;  [:a {:href "/my-goods/hkimura"} "hkimura"]]
+      ;_uniq-readers
+      (for [user uniq-readers]
+        [:span [:a {:href (str "/my-goods/" user)} user] " "])
       "(合計 " (count readers) "回、" (count uniq-readers) "人)"])))
 
 (def ^:private markdown-clj-url "https://github.com/yogthos/markdown-clj")

@@ -1,9 +1,9 @@
 # Question and Answers
 
 ## Unreleased
-- 全文検索（投稿や回答があったときにデータベースをアップデートする仕組み）
-- (reset) で毎回、クラッシュ。lein repl だとクラッシュは減る。
-  duct じゃなく、VScode の REPL がダメか？
+
+- 投稿や回答があったときにデータベースをアップデートする仕組み
+- (reset) で毎回、クラッシュ。lein clean のあとクラッシュは減る。
 - いいねにアラートつけるか
 ```clj
 [:a {:href (str "/good/" (:id q) "/" (:id a))
@@ -13,8 +13,68 @@
 - filter の初期値を環境変数でもつ。admin がコントロールできる。
   filter から self を抜いて適用する。
 
+## 2.14.0 (2025-10-03)
 
-## v2.10.773 / 2024-12-14
+- added /api/readers/:date
+- removed test/qa
+- docker
+    - サーバーで sudo systemctl ... 使うよりいいかも。
+    - postgres17をコンテナに同梱できる。
+    - jre のバージョンを合わせられる。
+    - コンテナのパフォーマンスはどのくらいか。
+    - 自力アップ。
+
+- renamed `docker-compose.yml` to `compose.yml`
+- changed `compose.yml` - env_file: ".env"
+- changed `clojure` to `jre`
+- chose postgres:17
+- removed `Dockerfile`
+
+
+## 2.13.792 / 2025-08-21
+
+- python-a の結果を表示する。
+- qa.handler.core/points を改変した。
+- can use `info`, `debug` for logging.
+- updated libraries which are same minor versions only.
+
+    - clojure.java-time
+    - next.jdbc
+    - duct/module.web
+    - markdown-clj
+    - postgres
+    - clojure
+
+| :file       | :name                                   | :current | :latest  |
+|-------------|-----------------------------------------|----------|----------|
+| project.clj | cheshire/cheshire                       | 5.13.0   | 6.0.0    |
+|             | clojure.java-time/clojure.java-time     | 1.4.2    | 1.4.3    |
+|             | com.fasterxml.jackson.core/jackson-core | 2.17.2   | 2.19.2   |
+|             | com.github.seancorfield/next.jdbc       | 1.3.939  | 1.3.1048 |
+|             | com.taoensso/timbre                     | 6.5.0    | 6.7.1    |
+|             | duct/module.web                         | 0.7.3    | 0.7.4    |
+|             | hiccup/hiccup                           | 1.0.5    | 2.0.0    |
+|             | integrant/repl                          | 0.3.3    | 0.4.0    |
+|             | markdown-clj/markdown-clj               | 1.12.1   | 1.12.4   |
+|             | org.clojure/clojure                     | 1.12.0   | 1.12.1   |
+|             | org.postgresql/postgresql               | 42.7.4   | 42.7.7   |
+|             | ring/ring-anti-forgery                  | 1.3.1    | 1.4.0    |
+|             | ring/ring-core                          | 1.12.2   | 1.14.2   |
+|             | ring/ring-defaults                      | 0.5.0    | 0.6.0    |
+|             | ring/ring-jetty-adapter                 | 1.12.2   | 1.14.2   |
+
+- resumed `next.jdbc` back to 1.3.939. with 1.3.1048, following error occured.
+
+    Syntax error compiling at (next/jdbc/default_options.clj:11:1).
+    No such var: p/Wrapped
+
+## 2.12.775 / 2025-06-04
+
+- added `/db-dumps/restore-dump.sh`
+- gitignore `/db-dumps/*.dump`
+- link `/my-goods/:login`
+
+## 2.10.773 / 2024-12-14
 
 - fixed bug: goods の表示順が並んでいない。
 
@@ -29,11 +89,11 @@
      ret))
 ```
 
-## v2.10.767 / 2024-10-06
+## 2.10.767 / 2024-10-06
 
 - readers にユニークなリーダーの数を追加表示。
 
-## v2.9.762 / 2024-10-05
+## 2.9.762 / 2024-10-05
 
 - css for pre.code.
 - QA_DEV=true 時の認証は (= login "hkimura") のみ。
@@ -44,7 +104,7 @@
    [com.taoensso/timbre "6.5.0"]
 ```
 
-## v2.8.728 / 2024-09-20
+## 2.8.728 / 2024-09-20
 
 
 
@@ -95,12 +155,12 @@
    [ring/ring-jetty-adapter "1.12.2"]
 ```
 
-## v2.7.719 / 2024-09-12
+## 2.7.719 / 2024-09-12
 
 - gave up to clearing up the last page contents after preview-> submit.
   instead, introduce dev.preview class and provide css.
 
-## v2.7.710 / 2024-09-12
+## 2.7.710 / 2024-09-12
 
 - color pre code
 
@@ -113,7 +173,7 @@ pre code {
 }
 ```
 
-## v2.7.703 / 2024-08-26
+## 2.7.703 / 2024-08-26
 Compiling with jdk17 instead of preparing docker?
 - Delete `Makrdown Preview` button.
 - make uberjar
@@ -128,10 +188,10 @@ uberjar:
   image: clojure:temurin-17-lein-jammy
 ```
 
-## v2.6.697 / 2024-04-20
+## 2.6.697 / 2024-04-20
 - markdown 道場の切り替え。mp.melt にリンクする。
 
-## v2.6.693 / 2024-04-20
+## 2.6.693 / 2024-04-20
 - マージミス。
 - docker-compose.yml: image: postgres:14.11
   ```
@@ -142,7 +202,7 @@ uberjar:
 - bind mount /root/.m2, not /home/vscode/.m2
 - updated bump-version.sh, updating CHANGELOG.md.
 
-## v2.5.681 / 2024-04-16
+## 2.5.681 / 2024-04-16
 - core/question-start を環境変数 QA_STARTで。
 - lein clean
 - clj -Tantq outdated

@@ -1,13 +1,16 @@
-
 DEST="ubuntu@app.melt.kyutech.ac.jp"
 
 all:
+	@echo make dev
 	@echo make build
 	@echo make zip
 	@echo make github
 	@echo make uberjar
 	@echo make run
 	@echo make deploy
+
+dev:
+	lein repl
 
 uberjar:
 #	JAVA_HOME=/opt/homebrew/Cellar/openjdk@17/17.0.12/libexec/openjdk.jdk/Contents/Home lein uberjar

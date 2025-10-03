@@ -1,10 +1,12 @@
 (ns qa.handler.core
   (:require
    [ataraxy.response :as response]
+   [clojure.edn :as edn]
+   [clojure.java.io :as io]
    [integrant.core :as ig]
    [java-time.api :as jt]
    [next.jdbc :as jdbc]
-   [next.jdbc.sql :as sql]
+   ;;[next.jdbc.sql :as sql]
    [next.jdbc.result-set :as rs]
    [qa.boundary.answers :as answers]
    [qa.boundary.goods :as goods]
@@ -23,7 +25,7 @@
      recents-page
      recent-goods-page
      readers-page
-     points-page
+     ;; points-page
      preview-page]]
    [taoensso.timbre :refer [info debug] :as timbre]))
 
@@ -189,23 +191,36 @@
       (jdbc/with-options
         {:builder-fn rs/as-unqualified-lower-maps})))
 
+; (defmethod ig/init-key :qa.handler.core/points [_ _]
+;   (fn [request]
+;     (let [login (get-login request)
+;           ret (sql/query
+;                grading
+;                ["select * from grading where login=?" login])]
+;       (if (empty? ret)
+;         [::response/ok "no data"]
+;         (let [ret (first ret)]
+;           (points-page
+;            (:name ret)
+;            (:sid ret)
+;            (->> (dissoc ret
+;                         :created_at
+;                         :id
+;                         :login
+;                         :name
+;                         :sid
+;                         :updated_at)
+;                 (sort-by key))))))))
+
+;; 2025 python-a
 (defmethod ig/init-key :qa.handler.core/points [_ _]
   (fn [request]
     (let [login (get-login request)
-          ret (sql/query
-               grading
-               ["select * from grading where login=?" login])]
-      (if (empty? ret)
-        [::response/ok "no data"]
-        (let [ret (first ret)]
-          (points-page
-           (:name ret)
-           (:sid ret)
-           (->> (dissoc ret
-                        :created_at
-                        :id
-                        :login
-                        :name
-                        :sid
-                        :updated_at)
-                (sort-by key))))))))
+          points (-> "python-a.edn"
+                     io/resource
+                     slurp
+                     edn/read-string
+                     (get login))]
+      (info "points " login points)
+      [::response/ok (str login " " points)])))
+
