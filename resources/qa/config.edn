@@ -37,9 +37,12 @@
     [:post "/md" {params :form-params}] [:qa.handler.core/md-post params]
     ;; post?
     [:get "/since"] [:qa.handler.core/set-since]
-    [:get "/since/" timestamp] [:qa.handler.core/since timestamp]}}
+    [:get "/since/" timestamp] [:qa.handler.core/since timestamp]
+    [:get "/api/readers/" date] [:qa.handler.api/readers date]}}
 
   :qa.middleware/auth {}
+
+  :qa.handler.api/readers {:db #ig/ref :duct.database/sql}
 
   :qa.handler.core/index {}
 

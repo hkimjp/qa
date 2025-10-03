@@ -25,9 +25,9 @@
   (session-backend {:unauthorized-handler unauthorized-handler}))
 
 (defn probe [handler]
- (fn [req]
-  (debug "probe session identity:" (get-in req [:session :identity]))
-  (handler req)))
+  (fn [req]
+  ; (debug "probe session identity:" (get-in req [:session :identity]))
+    (handler req)))
 
 (defmethod ig/init-key :qa.middleware/auth [_ _]
   (fn [handler]

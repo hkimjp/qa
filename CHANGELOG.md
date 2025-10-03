@@ -13,17 +13,22 @@
 - filter の初期値を環境変数でもつ。admin がコントロールできる。
   filter から self を抜いて適用する。
 
-## 2.14.0-SNAPSHOT
+## 2.14.0-SNAPSHOT (2025-10-02)
 
-* docker - 三つの理由。
-
+- added /api/readers/:date
+- removed test/qa
+- docker
     - サーバーで sudo systemctl ... 使うよりいいかも。
     - postgres17をコンテナに同梱できる。
     - jre のバージョンを合わせられる。
     - コンテナのパフォーマンスはどのくらいか。
     - 自力アップ。
 
-  api/todays-readers を作るに合わせてやってしまうか。
+- renamed `docker-compose.yml` to `compose.yml`
+- changed `compose.yml` - env_file: ".env"
+- changed `clojure` to `jre`
+- chose postgres:17
+- removed `Dockerfile`
 
 
 ## 2.13.792 / 2025-08-21

@@ -1,18 +1,19 @@
 services:
   qa:
-    image: clojure:temurin-17-lein-jammy
+    image: eclipse-temurin:25_36-jre-jammy
+    env_file: ".env"
+    working_dir: /usr/src/app
     volumes:
       - .:/usr/src/app
       - m2:/root/.m2
-    working_dir: /usr/src/app
-    environment:
-      QA_DEV: true
-    entrypoint:
-      - sleep
-      - infinity
+    ports:
+      - 3090:3000
+    entrypoint: >
+      sh -c "java --enable-native-access=ALL-UNNAMED -jar qa.jar"
+      # sh -c "sleep infinity"
 
   db:
-    image: postgres:14
+    image: postgres:17
     environment:
       POSTGRES_DB: qa
       POSTGRES_HOST_AUTH_METHOD: trust
@@ -20,6 +21,8 @@ services:
       TZ: Asia/Toky
     volumes:
       - data:/var/lib/postgresql/data
+    ports:
+      - 15432:5432
 
 volumes:
   m2:
