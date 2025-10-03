@@ -13,7 +13,7 @@
 - filter の初期値を環境変数でもつ。admin がコントロールできる。
   filter から self を抜いて適用する。
 
-## 2.14.0-SNAPSHOT (2025-10-02)
+## 2.14.0-SNAPSHOT
 
 - added /api/readers/:date
 - removed test/qa
