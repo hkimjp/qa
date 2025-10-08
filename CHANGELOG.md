@@ -16,6 +16,13 @@
 
 ## 2.14.1-SNAPSHOT
 
+- updated some libraries
+
+| :file       | :name                                   | :current | :latest  |
+|-------------|-----------------------------------------|----------|----------|
+| project.clj | org.clojure/clojure                     | 1.12.1   | 1.12.3   |
+|             | org.postgresql/postgresql               | 42.7.7   | 42.7.8   |
+
 - FIXME: JSON になってない。edn だ。
 
 ## 2.14.0 (2025-10-03)
