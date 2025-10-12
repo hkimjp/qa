@@ -15,14 +15,16 @@ dev:
 uberjar:
 	lein uberjar
 
-run: uberjar
-	sh start.sh
+run:
+	lein run
+	# sh start.sh
 
 deploy: uberjar
   scp target/qa-*-standalone.jar ${DEST}:qa/qa.jar
   ssh ${DEST} 'sudo systemctl restart qa'
   ssh ${DEST} 'systemctl status qa'
 
+# deplopy to eq.local, docker
 eq: uberjar
 	scp target/qa-*-standalone.jar eq.local:qa/qa.jar
 	ssh eq.local 'cd qa & docker compose restart'
