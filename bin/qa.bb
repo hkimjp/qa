@@ -3,6 +3,7 @@
 (require '[babashka.deps :as deps])
 (deps/add-deps '{:deps {org.babashka/http-client {:mvn/version "0.4.23"}}})
 (require '[babashka.http-client :as http])
+(require '[clojure.edn :as edn])
 
 (defn qa []
   (let [uri "https://qa.melt.kyutech.ac.jp/api/readers"
