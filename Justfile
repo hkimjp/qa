@@ -1,13 +1,13 @@
 set dotenv-load
 
 all:
-	@echo make dev
-	@echo make build
-	@echo make zip
-	@echo make github
-	@echo make uberjar
-	@echo make run
-	@echo make deploy
+	@echo just dev
+	@echo just build
+	@echo just zip
+	@echo just github
+	@echo just uberjar
+	@echo just run
+	@echo just deploy
 
 dev:
 	sh start-dev.sh
