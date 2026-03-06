@@ -13,6 +13,7 @@
 - filter の初期値を環境変数でもつ。admin がコントロールできる。
   filter から self を抜いて適用する。
 * 過去n時間内に投稿、リプライがあった記事に new マークをつける。
+- cheshiere+hato を http-kit/client+Accept:application/edn にかえる。
 
 ## 3.0.0-SNAPSHOT
 
@@ -43,6 +44,7 @@
 
 ## 2.14.1-SNAPSHOT
 
+- cheshire を 5.13.0 から 6.1.0 にあげると、hato が狂い出す。
 - updated some libraries
 
 | :file       | :name                                   | :current | :latest  |

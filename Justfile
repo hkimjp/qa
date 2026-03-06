@@ -1,30 +1,30 @@
-set dotenv-load
+set dotenv-load := true
 
 all:
-	@echo just dev
-	@echo just build
-	@echo just zip
-	@echo just github
-	@echo just uberjar
-	@echo just run
-	@echo just deploy
+    @echo just dev
+    @echo just build
+    @echo just zip
+    @echo just github
+    @echo just uberjar
+    @echo just run
+    @echo just deploy
 
 dev:
-	sh start-dev.sh
+    sh start-dev.sh
 
 uberjar:
-	lein uberjar
+    lein uberjar
 
 run:
-	lein run
-	# sh start.sh
+    lein run
 
-deploy: uberjar
-  scp target/qa-*-standalone.jar ${DEST}:qa/qa.jar
-  ssh ${DEST} 'sudo systemctl restart qa'
-  ssh ${DEST} 'systemctl status qa'
+deploy host: uberjar
+    scp target/qa-*-standalone.jar {{ host }}:qa/qa.jar
+    ssh {{ host }} 'sudo systemctl restart qa'
+    ssh {{ host }} 'systemctl status qa'
 
-# deplopy to eq.local, docker
-eq: uberjar
-	scp target/qa-*-standalone.jar eq.local:qa/qa.jar
-	ssh eq.local 'cd qa & docker compose restart'
+stage:
+    just deploy ${STAGE}
+
+prod:
+    just deploy ${PROD}
