@@ -22,7 +22,7 @@
    ;;
    [cheshire/cheshire "5.13.0"]
    [hato/hato "1.0.0"]
-   ;; [ring "1.12.2"] ;; no 1.12.1
+   ;; [ring "1.12.2"] ;; no 1.12.1`
    ;; feature/safari, 2024-09-20
    [ring/ring-anti-forgery "1.4.0"]
    [ring/ring-core "1.15.3"]
