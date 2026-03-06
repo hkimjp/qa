@@ -8,7 +8,7 @@
    [buddy/buddy-hashers "2.0.167"]
    [clojure.java-time "1.4.3"]
    [com.github.seancorfield/next.jdbc "1.3.1093"]
-   [com.fasterxml.jackson.core/jackson-core "2.17.2"]
+   [com.fasterxml.jackson.core/jackson-core "2.21.1"]
    [duct/core "0.8.1"]
    [duct/module.ataraxy "0.3.0"]
    [duct/module.logging "0.5.0"]
@@ -20,16 +20,16 @@
    [org.clojure/clojure "1.12.4"]
    [org.postgresql/postgresql "42.7.10"]
    ;;
-   [cheshire/cheshire "6.1.0"]
+   [cheshire/cheshire "5.13.0"]
    [hato/hato "1.0.0"]
    ;; [ring "1.12.2"] ;; no 1.12.1
    ;; feature/safari, 2024-09-20
    [ring/ring-anti-forgery "1.4.0"]
-   [ring/ring-core "1.12.2"]
-   [ring/ring-defaults "0.5.0"]
-   [ring/ring-jetty-adapter "1.12.2"]
+   [ring/ring-core "1.15.3"]
+   [ring/ring-defaults "0.7.0"]
+   [ring/ring-jetty-adapter "1.15.3"]
    ;;
-   [dev.weavejester/medley "1.8.1"]
+   [dev.weavejester/medley "1.9.0"]
    [com.taoensso/timbre "6.5.0"]]
 
   :plugins [[duct/lein-duct "0.12.3"]]
@@ -45,7 +45,7 @@
    :profiles/dev {}
    :project/dev  {:source-paths   ["dev/src"]
                   :resource-paths ["dev/resources"]
-                  :dependencies   [[integrant/repl "0.3.3"]
+                  :dependencies   [[integrant/repl "0.5.0"]
                                    [hawk "0.2.11"]
                                    [eftest "0.6.0"]
                                    [kerodon "0.9.1"]]}})

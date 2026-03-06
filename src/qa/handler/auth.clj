@@ -1,7 +1,7 @@
 (ns qa.handler.auth
   (:require
    [buddy.hashers :as hashers]
-   [clojure.string :as str]
+   ; [clojure.string :as str]
    [environ.core :refer [env]]
    [hato.client :as hc]
    [integrant.core :as ig]
@@ -14,6 +14,8 @@
 
 (comment
   (env :qa-dev)
+  (:body (hc/get "https://l22.melt.kyutech.ac.jp/api/user/hkimura"))
+  (:body (hc/get "https://l22.melt.kyutech.ac.jp/api/user/hkimura" {:as :json}))
   :rcf)
 
 (defmethod ig/init-key :qa.handler.auth/login [_ _]
@@ -21,16 +23,17 @@
     (index-page req)))
 
 (defn auth? [login password]
-  (debug "auth?" login (str/replace password #"." "#"))
+  (debug "auth?" login password)
   (if (env :qa-dev)
     (and (= login "hkimura") true) ; any password
-    (let [l22 "https://l22.melt.kyutech.ac.jp"
-          ep (str l22 "/api/user/" login)
-          user (:body (hc/get ep {:as :json}))]
-        (and (some? user) (hashers/check password (:password user))))))
+    (let [ep (str "https://l22.melt.kyutech.ac.jp/api/user/" login)
+          user (:body (hc/get ep {:as :json}))];;
+      (info "user=>" user "password")
+      (and (some? user) (hashers/check password (:password user))))))
 
 (defmethod ig/init-key :qa.handler.auth/login-post [_ _]
   (fn [{[_ {:strs [login password]}] :ataraxy/result}]
+    (info "login password=>" login password)
     (if (and (seq login) (auth? login password))
       (let [ret (-> (resp/redirect "/qs")
                     (assoc-in [:session :identity] login))]; was (keyword login)
