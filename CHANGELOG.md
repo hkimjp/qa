@@ -14,6 +14,32 @@
   filter から self を抜いて適用する。
 * 過去n時間内に投稿、リプライがあった記事に new マークをつける。
 
+## 3.0.0-SNAPSHOT
+
+- updated libraries
+
+| :file       | :name                                   | :current | :latest  |
+|-------------|-----------------------------------------|----------|----------|
+|             | com.fasterxml.jackson.core/jackson-core | 2.17.2   | 2.21.1   |
+|             | com.github.seancorfield/next.jdbc       | 1.3.1086 | 1.3.1093 |
+|             | dev.weavejester/medley                  | 1.8.1    | 1.9.0    |
+|             | integrant/repl                          | 0.3.3    | 0.5.0    |
+|             | markdown-clj/markdown-clj               | 1.12.4   | 1.12.7   |
+|             | org.clojure/clojure                     | 1.12.3   | 1.12.4   |
+|             | org.postgresql/postgresql               | 42.7.8   | 42.7.10  |
+|             | ring/ring-anti-forgery                  | 1.3.1    | 1.4.0    |
+|             | ring/ring-core                          | 1.12.2   | 1.15.3   |
+|             | ring/ring-defaults                      | 0.5.0    | 0.7.0    |
+|             | ring/ring-jetty-adapter                 | 1.12.2   | 1.15.3   |
+
+- not updated
+
+
+| :file       | :name                                   | :current | :latest  |
+|-------------|-----------------------------------------|----------|----------|
+| project.clj | cheshire/cheshire                       | 5.13.0   | 6.1.0    |
+|             | com.taoensso/timbre                     | 6.5.0    | 6.8.0    |
+|             | hiccup/hiccup                           | 1.0.5    | 2.0.0    |
 
 ## 2.14.1-SNAPSHOT
 
