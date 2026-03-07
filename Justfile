@@ -1,4 +1,4 @@
-set dotenv-load := true
+set dotenv-load
 
 printenv:
     printenv
@@ -7,10 +7,17 @@ env var:
     @printenv  {{ var }}
 
 dev:
-    sh start-dev.sh
+    @echo 'after jacking in the repl, development wil start by (dev), (go).'
+    lein repl
 
 run:
     lein run
+
+stop:
+    #!/usr/bin/env bash
+    PID=`lsof -i:${PORT} -t`
+    kill ${PID}
+    echo killed PID ${PID}
 
 uberjar:
     lein uberjar

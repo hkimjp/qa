@@ -7,17 +7,14 @@ services:
       - .:/usr/src/app
       - m2:/root/.m2
     ports:
-      - 3090:3000
+      - localhost:8530:8530
     entrypoint: >
       sh -c "java --enable-native-access=ALL-UNNAMED -jar qa.jar"
-      # sh -c "sleep infinity"
 
   db:
     image: postgres:18
     volumes:
       - data:/var/lib/postgresql
-    # ports:
-    #   - 15432:5432
 
 volumes:
   m2:
