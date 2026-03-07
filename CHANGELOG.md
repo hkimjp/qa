@@ -17,8 +17,9 @@
 - :duct.server.http/jetty {:port #duct/env ["PORT" Int :or 3030]} ができない。
   duct.core.env/coerce
 
-## 3.0.1-SNAPSHOT
+## 3.0.1 (2026-03-07)
 
+- updated `bump-version-local.sh`
 - convined `start.sh` and `stop.sh` into `Justfile`
 - updated libraries
 
@@ -45,7 +46,7 @@
 |             | com.taoensso/timbre                     | 6.5.0    | 6.8.0    |
 |             | hiccup/hiccup                           | 1.0.5    | 2.0.0    |
 
-## 2.14.1-SNAPSHOT
+## 3.0.1 (2026-03-07)
 
 - cheshire を 5.13.0 から 6.1.0 にあげると、hato が狂い出す。
 - updated some libraries
