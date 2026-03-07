@@ -13,9 +13,13 @@
 - filter の初期値を環境変数でもつ。admin がコントロールできる。
   filter から self を抜いて適用する。
 - 過去n時間内に投稿、リプライがあった記事に new マークをつける。
-- cheshiere+hato を http-kit/client+Accept:application/edn でリプレースする。
 - :duct.server.http/jetty {:port #duct/env ["PORT" Int :or 3030]} ができない。
   duct.core.env/coerce
+
+
+## 3.0.2-SNAPSHOT
+
+- replaced cheshiere+hato by  http-kit/client
 
 ## 3.0.1 (2026-03-07)
 

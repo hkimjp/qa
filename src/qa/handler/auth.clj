@@ -3,7 +3,8 @@
    [buddy.hashers :as hashers]
    ; [clojure.string :as str]
    [environ.core :refer [env]]
-   [hato.client :as hc]
+   ; [hato.client :as hc]
+   [org.httpkit.client :as hk]
    [integrant.core :as ig]
    [qa.view.page :refer [index-page]]
    [ring.util.response :as resp]
@@ -13,9 +14,13 @@
 ;; (def l22 "https://l22.melt.kyutech.ac.jp")
 
 (comment
-  (env :qa-dev)
-  (:body (hc/get "https://l22.melt.kyutech.ac.jp/api/user/hkimura"))
-  (:body (hc/get "https://l22.melt.kyutech.ac.jp/api/user/hkimura" {:as :json}))
+  (let [url "http://eq.local:3022/api/user/hkimura"]
+    [(-> (hc/get url {:as :json})
+         :body)
+     (-> @(hk/get url {:headers {"Accept" "application/edn"}})
+         :body
+         slurp
+         clojure.edn/read-string)])
   :rcf)
 
 (defmethod ig/init-key :qa.handler.auth/login [_ _]
@@ -26,8 +31,11 @@
   (debug "auth?" login password)
   (if (env :qa-dev)
     (and (= login "hkimura") true) ; any password
-    (let [ep (str "https://l22.melt.kyutech.ac.jp/api/user/" login)
-          user (:body (hc/get ep {:as :json}))];;
+    (let [url (str "https://l22.melt.kyutech.ac.jp/api/user/" login)
+          user (-> @(hk/get url {:headers {"Accept" "application/edn"}})
+                   :body
+                   slurp
+                   clojure.edn/read-string)]
       (info "user=>" user "password")
       (and (some? user) (hashers/check password (:password user))))))
 

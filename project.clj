@@ -20,8 +20,10 @@
    [org.clojure/clojure "1.12.4"]
    [org.postgresql/postgresql "42.7.10"]
    ;;
-   [cheshire/cheshire "5.13.0"] ; no 6.1.0
-   [hato/hato "1.0.0"]
+   ; [cheshire/cheshire "5.13.0"] ; no 6.1.0
+   ; [hato/hato "1.0.0"]
+   [http-kit/http-kit "2.8.1"]
+   ;;
    [ring/ring-anti-forgery "1.4.0"]
    [ring/ring-core "1.15.3"]
    [ring/ring-defaults "0.7.0"]
