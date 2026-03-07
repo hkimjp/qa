@@ -14,16 +14,10 @@ services:
 
   db:
     image: postgres:18
-    environment:
-      POSTGRES_DB: qa
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: hamlet
-      POSTGRES_INITDB_ARGS: --encoding=UTF-8 --locale=C
-      TZ: Asia/Toky
     volumes:
       - data:/var/lib/postgresql
-    ports:
-      - 15432:5432
+    # ports:
+    #   - 15432:5432
 
 volumes:
   m2:

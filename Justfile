@@ -1,22 +1,19 @@
 set dotenv-load := true
 
-all:
-    @echo just dev
-    @echo just build
-    @echo just zip
-    @echo just github
-    @echo just uberjar
-    @echo just run
-    @echo just deploy
+printenv:
+    printenv
+
+env var:
+    @printenv  {{ var }}
 
 dev:
     sh start-dev.sh
 
-uberjar:
-    lein uberjar
-
 run:
     lein run
+
+uberjar:
+    lein uberjar
 
 deploy host: uberjar
     scp target/qa-*-standalone.jar {{ host }}:qa/qa.jar

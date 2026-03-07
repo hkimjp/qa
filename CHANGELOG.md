@@ -14,8 +14,12 @@
   filter から self を抜いて適用する。
 * 過去n時間内に投稿、リプライがあった記事に new マークをつける。
 - cheshiere+hato を http-kit/client+Accept:application/edn にかえる。
+- duct.core.env/coerce
 
-## 3.0.0-SNAPSHOT
+    :duct.server.http/jetty {:port #duct/env ["PORT" Int :or 3030]} ができない。
+
+
+## 3.0.1-SNAPSHOT
 
 - updated libraries
 
