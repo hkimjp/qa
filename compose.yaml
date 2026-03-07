@@ -2,8 +2,8 @@ services:
   qa:
     image: eclipse-temurin:25-jre
     environment:
-      - POSTGRESS_PASSWORD
-    # env_file: ".env"
+      - POST
+      - DATABASE_URL
     working_dir: /usr/src/app
     volumes:
       - .:/usr/src/app
@@ -15,8 +15,11 @@ services:
 
   db:
     image: postgres:18
+    environment:
+      - POSTGRES_PASSWORD
     volumes:
       - data:/var/lib/postgresql
+      - ./dumps:/dumps
 
 volumes:
   m2:

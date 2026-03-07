@@ -22,6 +22,7 @@
 
 ## 3.0.2-SNAPSHOT
 
+- fixed compose.yaml
 - errred in `just stage`
 
     error: Recipe `deploy` failed on line 26 with exit code 1
