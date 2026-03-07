@@ -20,7 +20,7 @@
 - systemd への依存をやめる。スタンドアロンな QA に。特に、時刻を見てモードを変える部分。
 
 
-## 3.0.2-SNAPSHOT
+## 3.0.2 (2026-03-07)
 
 - imprived `compose.yaml`
 - errred in `just stage`
