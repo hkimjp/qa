@@ -5,16 +5,38 @@
 - 投稿や回答があったときにデータベースをアップデートする仕組み
 - (reset) で毎回、クラッシュ。lein clean のあとクラッシュは減る。
 - いいねにアラートつけるか
-```clj
-[:a {:href (str "/good/" (:id q) "/" (:id a))
-     :onclick "alert('いいと思うところは何？ Markdown で書けないか'); return true;"}
-    goods]
-```
+
+
+    [:a {:href (str "/good/" (:id q) "/" (:id a))
+       :onclick "alert('いいと思うところは何？ Markdown で書けないか'); return true;"}
+      goods]
+
 - filter の初期値を環境変数でもつ。admin がコントロールできる。
   filter から self を抜いて適用する。
 - 過去n時間内に投稿、リプライがあった記事に new マークをつける。
 - :duct.server.http/jetty {:port #duct/env ["PORT" Int :or 3030]} ができない。
   duct.core.env/coerce
+- systemd への依存をやめる。スタンドアロンな QA に。特に、時刻を見てモードを変える部分。
+- `compose.yaml` must be changed in the staging host.
+
+    ports:
+      - 127.0.0.1:8530:8530
+- replace markdown-clj with nextjournal/markdown
+- cheshiere+hato を http-kit/client+Accept:application/edn でリプレースする。
+
+    https eq.local:3022/api/user/hkimura Accept:application/edn
+
+## 3.0.3-SNAPSHOT
+
+- replace hato+cheshier by http-kit+(charred)
+
+## 3.0.2 (2026-03-07)
+
+- imprived `compose.yaml`
+- errred in `just stage`
+
+    error: Recipe `deploy` failed on line 26 with exit code 1
+    error: Recipe `stage` failed on line 31 with exit code 1
 
 
 ## 3.0.2-SNAPSHOT

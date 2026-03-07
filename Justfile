@@ -19,13 +19,23 @@ stop:
     kill ${PID}
     echo killed PID ${PID}
 
+up:
+    docker compose up
+
+down:
+    docker compose down
+
+restart:
+    just down up
+
 uberjar:
     lein uberjar
 
-deploy host: uberjar
+deploy host: #uberjar
+    ssh {{host}} mkdir -p qa
+    scp Justfile compose.yaml {{host}}:qa/
     scp target/qa-*-standalone.jar {{ host }}:qa/qa.jar
-    ssh {{ host }} 'sudo systemctl restart qa'
-    ssh {{ host }} 'systemctl status qa'
+    ssh {{ host }} 'cd qa && just up'
 
 stage:
     just deploy ${STAGE}
