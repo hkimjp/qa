@@ -30,6 +30,9 @@
 
 - Syntax error macroexpanding clojure.core/let at (qa/handler/auth.clj:34:5).
 - replace hato+cheshier by http-kit+(charred)
+- added `192.168.0.15 l22` in `/etc/hosts`.
+  auth server for development is `http://l22/api/user/<login>`.
+- replaced cheshiere+hato by  http-kit/client
 
 ## 3.0.2 (2026-03-07)
 
@@ -38,11 +41,6 @@
 
     error: Recipe `deploy` failed on line 26 with exit code 1
     error: Recipe `stage` failed on line 31 with exit code 1
-
-
-## 3.0.2-SNAPSHOT
-
-- replaced cheshiere+hato by  http-kit/client
 
 ## 3.0.1 (2026-03-07)
 

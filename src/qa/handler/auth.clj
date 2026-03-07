@@ -9,7 +9,7 @@
    [integrant.core :as ig]
    [qa.view.page :refer [index-page]]
    [ring.util.response :as resp]
-   [taoensso.timbre :refer [info debug error] :as timbre]))
+   [taoensso.timbre :refer [info debug] :as timbre]))
 
 (comment
   (let [url "http://eq.local:3022/api/user/hkimura"]
@@ -32,16 +32,29 @@
       (let [url (str (env :auth) login) ; bug! (env :auth) is empty.
             _  (info {:level :info :id "auth?" :msg url})
           ;;
-            user (-> @(hk/get url {:headers {"Accept" "application/edn"}})
-                     :body
-                     slurp
-                     clojure.edn/read-string)
+            pw (-> (hk/get url {:headers {"Accept" "application/edn"}})
+                   deref
+                   :body
+                   slurp
+                   clojure.edn/read-string
+                   :password)
           ;;
             ]
-        (info "user:" user "password" (:password user))
-        (and (some? user) (hashers/check password (:password user))))
+        (info "pw:" pw)
+        (hashers/check password pw))
       (catch Exception e
         (info {:level :error :msg (.getMessage e)})))))
+
+(comment
+  (-> "http://eq.local:3022/api/user/hkimura1"
+      (hk/get {:headers {"Accept" "application/edn"}})
+      deref
+      :body
+      slurp
+      clojure.edn/read-string
+      :password)
+  (hashers/check "abc" nil)
+  :rcf)
 
 (defmethod ig/init-key :qa.handler.auth/login-post [_ _]
   (fn [{[_ {:strs [login password]}] :ataraxy/result}]
