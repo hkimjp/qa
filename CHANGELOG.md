@@ -28,6 +28,7 @@
 
 ## 3.0.3-SNAPSHOT
 
+- Syntax error macroexpanding clojure.core/let at (qa/handler/auth.clj:34:5).
 - replace hato+cheshier by http-kit+(charred)
 
 ## 3.0.2 (2026-03-07)

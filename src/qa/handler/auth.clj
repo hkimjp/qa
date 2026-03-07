@@ -31,7 +31,8 @@
   (debug "auth?" login password)
   (if (env :qa-dev)
     (and (= login "hkimura") true) ; any password
-    (let [url (str "https://l22.melt.kyutech.ac.jp/api/user/" login)
+    (let [url (str (env :auth) login)
+          _  (info {:level :info :id "auth?" :msg (str "url:" url)})
           user (-> @(hk/get url {:headers {"Accept" "application/edn"}})
                    :body
                    slurp
