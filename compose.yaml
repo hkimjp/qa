@@ -2,6 +2,7 @@ services:
   qa:
     image: eclipse-temurin:25-jre
     environment:
+      - AUTH
       - PORT
       - DATABASE_URL
     working_dir: /usr/src/app

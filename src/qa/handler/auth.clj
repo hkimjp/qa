@@ -1,6 +1,7 @@
 (ns qa.handler.auth
   (:require
    [buddy.hashers :as hashers]
+   [clojure.edn]
    ; [clojure.string :as str]
    [environ.core :refer [env]]
    ; [hato.client :as hc]
@@ -8,10 +9,7 @@
    [integrant.core :as ig]
    [qa.view.page :refer [index-page]]
    [ring.util.response :as resp]
-   [taoensso.timbre :refer [info debug] :as timbre]))
-
-;; see definition of `auth?`
-;; (def l22 "https://l22.melt.kyutech.ac.jp")
+   [taoensso.timbre :refer [info debug error] :as timbre]))
 
 (comment
   (let [url "http://eq.local:3022/api/user/hkimura"]
@@ -28,17 +26,22 @@
     (index-page req)))
 
 (defn auth? [login password]
-  (debug "auth?" login password)
   (if (env :qa-dev)
     (and (= login "hkimura") true) ; any password
-    (let [url (str (env :auth) login)
-          _  (info {:level :info :id "auth?" :msg (str "url:" url)})
-          user (-> @(hk/get url {:headers {"Accept" "application/edn"}})
-                   :body
-                   slurp
-                   clojure.edn/read-string)]
-      (info "user=>" user "password")
-      (and (some? user) (hashers/check password (:password user))))))
+    (try
+      (let [url (str (env :auth) login) ; bug! (env :auth) is empty.
+            _  (info {:level :info :id "auth?" :msg url})
+          ;;
+            user (-> @(hk/get url {:headers {"Accept" "application/edn"}})
+                     :body
+                     slurp
+                     clojure.edn/read-string)
+          ;;
+            ]
+        (info "user:" user "password" (:password user))
+        (and (some? user) (hashers/check password (:password user))))
+      (catch Exception e
+        (info {:level :error :msg (.getMessage e)})))))
 
 (defmethod ig/init-key :qa.handler.auth/login-post [_ _]
   (fn [{[_ {:strs [login password]}] :ataraxy/result}]

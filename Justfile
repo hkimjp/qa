@@ -20,7 +20,7 @@ stop:
     echo killed PID ${PID}
 
 up:
-    docker compose up -d
+    docker compose up
 
 down:
     docker compose down
