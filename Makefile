@@ -31,7 +31,7 @@ deploy: uberjar
 
 TAG=hkim0331/duct:0.3.0
 
-build:
+docker-build:
 	docker build -t ${TAG} .
 
 zip:

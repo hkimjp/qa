@@ -1,25 +1,34 @@
 set dotenv-load
 
-all:
-	@echo make dev
-	@echo make build
-	@echo make zip
-	@echo make github
-	@echo make uberjar
-	@echo make run
-	@echo make deploy
+printenv:
+    printenv
+
+env var:
+    @printenv  {{ var }}
 
 dev:
-	sh start-dev.sh
+    @echo 'after jacking in the repl, development wil start by (dev), (go).'
+    lein repl
+
+run:
+    lein run
+
+stop:
+    #!/usr/bin/env bash
+    PID=`lsof -i:${PORT} -t`
+    kill ${PID}
+    echo killed PID ${PID}
 
 uberjar:
-	lein uberjar
+    lein uberjar
 
-run: uberjar
-	sh start.sh
+deploy host: uberjar
+    scp target/qa-*-standalone.jar {{ host }}:qa/qa.jar
+    ssh {{ host }} 'sudo systemctl restart qa'
+    ssh {{ host }} 'systemctl status qa'
 
-deploy: uberjar
-	scp target/qa-*-standalone.jar ${DEST}:qa/qa.jar
-	ssh ${DEST} 'cd qa & docker compose restart'
-# 	ssh ${DEST} 'sudo systemctl restart qa'
-# 	ssh ${DEST} 'systemctl status qa'
+stage:
+    just deploy ${STAGE}
+
+prod:
+    just deploy ${PROD}
