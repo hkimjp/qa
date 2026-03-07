@@ -14,7 +14,6 @@
 - filter の初期値を環境変数でもつ。admin がコントロールできる。
   filter から self を抜いて適用する。
 - 過去n時間内に投稿、リプライがあった記事に new マークをつける。
-- cheshiere+hato を http-kit/client+Accept:application/edn でリプレースする。
 - :duct.server.http/jetty {:port #duct/env ["PORT" Int :or 3030]} ができない。
   duct.core.env/coerce
 - systemd への依存をやめる。スタンドアロンな QA に。特に、時刻を見てモードを変える部分。
@@ -23,6 +22,9 @@
     ports:
       - 127.0.0.1:8530:8530
 - replace markdown-clj with nextjournal/markdown
+- cheshiere+hato を http-kit/client+Accept:application/edn でリプレースする。
+
+    https eq.local:3022/api/user/hkimura Accept:application/edn
 
 ## 3.0.3-SNAPSHOT
 
