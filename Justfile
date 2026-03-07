@@ -31,7 +31,7 @@ restart:
 uberjar:
     lein uberjar
 
-deploy host: #uberjar
+deploy host: uberjar
     ssh {{host}} mkdir -p qa
     scp Justfile compose.yaml {{host}}:qa/
     scp target/qa-*-standalone.jar {{ host }}:qa/qa.jar

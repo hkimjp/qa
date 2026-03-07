@@ -5,7 +5,7 @@
 - 投稿や回答があったときにデータベースをアップデートする仕組み
 - (reset) で毎回、クラッシュ。lein clean のあとクラッシュは減る。
 - いいねにアラートつけるか
-
+:
 
     [:a {:href (str "/good/" (:id q) "/" (:id a))
        :onclick "alert('いいと思うところは何？ Markdown で書けないか'); return true;"}
