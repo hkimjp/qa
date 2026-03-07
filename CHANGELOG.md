@@ -18,7 +18,15 @@
 - :duct.server.http/jetty {:port #duct/env ["PORT" Int :or 3030]} ができない。
   duct.core.env/coerce
 - systemd への依存をやめる。スタンドアロンな QA に。特に、時刻を見てモードを変える部分。
+- `compose.yaml` must be changed in the staging host.
 
+    ports:
+      - 127.0.0.1:8530:8530
+- replace markdown-clj with nextjournal/markdown
+
+## 3.0.3-SNAPSHOT
+
+- replace hato+cheshier by http-kit+(charred)
 
 ## 3.0.2 (2026-03-07)
 
