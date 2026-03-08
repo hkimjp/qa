@@ -1,14 +1,6 @@
 (ns qa.handler.api
   (:require
-   [ataraxy.response :as response]
-   ; [clojure.edn :as edn]
-   ; [clojure.java.io :as io]
    [integrant.core :as ig]
-   ; [java-time.api :as jt]
-   ; [next.jdbc.result-set :as rs]
-   ; [qa.boundary.answers :as answers]
-   ; [qa.boundary.goods :as goods]
-   ; [qa.boundary.questions :as questions]
    [qa.boundary.readers :as readers]
    [taoensso.timbre :refer [info]]))
 

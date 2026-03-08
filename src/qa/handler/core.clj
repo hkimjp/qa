@@ -18,8 +18,8 @@
      answers-page
      goods-page
      index-page
-     markdown-page
-     markdown-preview-page
+     ; markdown-page
+     ; markdown-preview-page
      question-new-page
      questions-page
      recents-page
@@ -59,6 +59,7 @@
     (let [nick (get-login req)
           question (get params "question")]
       (debug "question-create" "nick" nick "question" question)
+      (debug "params " params)
       (questions/create db nick question)
       [::response/found "/qs"])))
 
@@ -88,7 +89,7 @@
   (fn [{{:keys [q_id answer]} :params :as req}]
     (let [nick (get-login req)]
       (debug "answer-create: q_id" q_id "nick" nick "answer" answer)
-      (answers/create db (Integer/parseInt q_id) nick answer)
+      (answers/create db (parse-long q_id) nick answer)
       [::response/found (str "/as/" q_id)])))
 
 ;; /as/3 のように呼ばれる。
@@ -175,42 +176,12 @@
   (fn [_]
     [::response/found (str "/since/" (jt/local-date))]))
 
-(defmethod ig/init-key :qa.handler.core/md [_ _]
-  (fn [req]
-    (markdown-page (get-login req))))
-
-(defmethod ig/init-key :qa.handler.core/md-post [_ {:keys [db]}]
-  (fn [{[_ {:strs [md]}] :ataraxy/result :as request}]
-    (readers/create-reader db (get-login request) "md" 0)
-    (markdown-preview-page md)))
-
 (def grading
   (-> (jdbc/get-datasource
        {:dbtype "sqlite"
         :dbname "db/grading.sqlite3"})
       (jdbc/with-options
         {:builder-fn rs/as-unqualified-lower-maps})))
-
-; (defmethod ig/init-key :qa.handler.core/points [_ _]
-;   (fn [request]
-;     (let [login (get-login request)
-;           ret (sql/query
-;                grading
-;                ["select * from grading where login=?" login])]
-;       (if (empty? ret)
-;         [::response/ok "no data"]
-;         (let [ret (first ret)]
-;           (points-page
-;            (:name ret)
-;            (:sid ret)
-;            (->> (dissoc ret
-;                         :created_at
-;                         :id
-;                         :login
-;                         :name
-;                         :sid
-;                         :updated_at)
-;                 (sort-by key))))))))
 
 ;; 2025 python-a
 (defmethod ig/init-key :qa.handler.core/points [_ _]

@@ -15,13 +15,13 @@
     [:get "/points"] ^:auth [:qa.handler.core/points]
     ;; questions
     [:get  "/q"] ^:auth [:qa.handler.core/question-new]
-    [:post "/q" {params :multipart-params}] [:qa.handler.core/question-create params]
+    [:post "/q" {params :form-params}] [:qa.handler.core/question-create params]
     [:get  "/qs"] ^:auth [:qa.handler.core/questions]
     [:get  "/qs-all"] ^:auth [:qa.handler.core/questions-all]
     ;; markdown preview
     [:post "/markdown-preview" {params :form-params}] [:qa.handler.core/markdown-preview params]
     ;; answers
-    [:post "/a" {params :multipart-params}] [:qa.handler.core/answer-create params]
+    [:post "/a" {params :form-params}] [:qa.handler.core/answer-create params]
     [:get  "/as/" n] ^:auth [:qa.handler.core/answers ^int n]
     ;; goods
     [:get "/good/" q-id "/" a-id] ^:auth [:qa.handler.core/good ^int q-id ^int a-id]
@@ -33,8 +33,8 @@
     [:get "/admin"] ^:auth [:qa.handler.core/admin]
     [:post "/admin/goods" {params :form-params}] [:qa.handler.core/admin-goods params]
     [:get "/readers/" path "/" n] ^:auth [:qa.handler.core/readers path ^int n]
-    [:get  "/md"] ^:auth [:qa.handler.core/md]
-    [:post "/md" {params :form-params}] [:qa.handler.core/md-post params]
+    ; [:get  "/md"] ^:auth [:qa.handler.core/md]
+    ; [:post "/md" {params :form-params}] [:qa.handler.core/md-post params]
     ;; post?
     [:get "/since"] [:qa.handler.core/set-since]
     [:get "/since/" timestamp] [:qa.handler.core/since timestamp]
@@ -72,8 +72,8 @@
 
   :qa.handler.core/recents {:db #ig/ref :duct.database/sql}
 
-  :qa.handler.core/md {}
-  :qa.handler.core/md-post {:db #ig/ref :duct.database/sql}
+  ; :qa.handler.core/md {}
+  ; :qa.handler.core/md-post {:db #ig/ref :duct.database/sql}
 
   :qa.handler.core/readers {:db #ig/ref :duct.database/sql}
   :qa.handler.core/set-since {}

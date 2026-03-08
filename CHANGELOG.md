@@ -16,12 +16,18 @@
 - 過去 n 時間内に投稿、リプライがあった記事に new マークをつける。
 - :duct.server.http/jetty {:port #duct/env ["PORT" Int :or 3030]} ができない。
   duct.core.env/coerce
-- systemd への依存をやめる。スタンドアロンな QA に。特に、時刻を見てモードを変える部分。
-- `compose.yaml` must be changed in the staging host.
 
-    ports:
-      - 127.0.0.1:8530:8530
 
+## 3.1.0 (2026-03-08)
+
+- release 3.1.0
+- code clean up
+
+## 3.0.4 (2026-03-08)
+
+- migrated hiccup1-> hiccup2
+- changed config.edn: useless `:multipart-params` to `:form-params`,
+  also codes.
 
 ## 3.0.3 (2026-03-08)
 

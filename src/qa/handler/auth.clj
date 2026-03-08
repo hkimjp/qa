@@ -33,19 +33,16 @@
 
 (defn auth? [login password]
   (if-not (env :auth)
-    (= login "hkimura") ; any password
+    (= login "hkimura")
     (try
-      (let [url (str (env :auth) login) ; bug! (env :auth) is empty.
+      (let [url (str (env :auth) login)
             _  (info {:level :info :id "auth?" :msg url})
-          ;;
             pw (-> (hk/get url {:headers {"Accept" "application/edn"}})
                    deref
                    :body
                    slurp
                    clojure.edn/read-string
-                   :password)
-          ;;
-            ]
+                   :password)]
         (debug "pw:" pw)
         (hashers/check password pw))
       (catch Exception e
@@ -67,7 +64,7 @@
     (info "login password=>" login password)
     (if (and (seq login) (auth? login password))
       (let [ret (-> (resp/redirect "/qs")
-                    (assoc-in [:session :identity] login))]; was (keyword login)
+                    (assoc-in [:session :identity] login))]
         (info "login success" login)
         (debug "ret" ret)
         ret)
