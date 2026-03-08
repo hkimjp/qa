@@ -135,9 +135,9 @@
            :enctype "multipart/formdata"
            :onsubmit "return confirm('その質問は具体的？')"}
     (h/raw (anti-forgery-field))
-    [:text-area {:id "question"
-                 :name "question"
-                 :placeholder "マークダウン不可。1行60文字以内に改行するように。"}]
+    [:textarea {:id "question"
+                :placeholder "マークダウン不可。1行60文字以内に改行するように。"}
+     "question"]
     [:br]
     [:button "submit"]]))
 
@@ -152,15 +152,15 @@
    [:p "すべての QA に目を通すのがルール。"]
    [:p
     [:a {:href "/recents" :class "btn btn-success btn-sm"} "最近の投稿"]
-    "&nbsp;"
+    " "
     [:a {:href "/goods" :class "btn btn-warning btn-sm"} "最近のいいね"]
-    "&nbsp;"
+    " "
     [:a {:href "/q" :class "btn btn-primary btn-sm"} "new question"]
-    "&nbsp;"
+    " "
     [:a {:href "/about" :class "btn btn-primary btn-sm"} "About"]
-    "&nbsp;"
+    " "
     ;; [:a {:href "/md" :class "btn btn-info btn-sm"} "markdown道場"]
-    ;; "&nbsp;"
+    ;; " "
     [:a {:href "/logout" :class "btn btn-warning btn-sm"} "logout"]]
    [:p [:a.link-underline-light
         {:href "/readers/qs/0"}
@@ -171,11 +171,11 @@
       ", "
       (h/raw (-> (:q q) str/split-lines first))
            ;;(escape-html (ss 30 (:q q)))
-      "&nbsp;"
+      " "
       [:a.link-underline-light
        {:href (str "/my-goods/" (:nick q))}
        (:nick q)]
-      "&nbsp;"
+      " "
       [:a.link-underline-light
        {:href (str "/as/" (:id q))}
        (str " 👉 " (answer-count cs (:id q)))]])
@@ -216,7 +216,7 @@
          (when (= nick "hkimura")
            [:a.link-underline-light
             {:href (str "/who-goods/" (:id a))}
-            " &nbsp; "])]]))
+            "   "])]]))
    [:p
     ;; form の内側に [:a] で道場をリンクしている。submit 先で分岐できれば、
     ;; タイプしたメッセージをプレビューできるか？
@@ -230,12 +230,12 @@
     [:form {:method :post :action "/markdown-preview"}
      (h/raw (anti-forgery-field))
      [:input {:type "hidden" :name "q_id"} (:id q)]
-     [:text-area {:id "answer" :placeholder "markdown OK"} "answer"]
+     [:textarea {:id "answer" :placeholder "markdown OK"} "answer"]
      [:br]
      ; [:a {:href "https://mp.melt.kyutech.ac.jp"
      ;      :class "btn btn-info btn-sm"}
      ;  "Markdown Preview"]
-     "&nbsp;"
+     " "
      ;(submit-button {:class "btn btn-primary btn-sm"} "preview")
      [:button.btn.btn-primary.btn-sm "preview"]
      [:p "自分のマークダウンを preview で確認して投稿する"]]]
@@ -334,7 +334,7 @@
     ; (submit-button {:class "btn btn-info btn-sm"} "preview"))
    [:form {:method :post :action "/md"}
     (h/raw (anti-forgery-field))
-    [:text-area {:id "md" :placeholder "マークダウンを練習しましょう。"}]
+    [:textarea {:id "md" :placeholder "マークダウンを練習しましょう。"}]
     [:button.btn.btn-info.btn.sm "preview"]]))
 
 (defn markdown-preview-page [md]
