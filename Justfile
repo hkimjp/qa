@@ -35,7 +35,7 @@ deploy host: uberjar
     ssh {{host}} mkdir -p qa
     scp Justfile compose.yaml {{host}}:qa/
     scp target/qa-*-standalone.jar {{ host }}:qa/qa.jar
-    ssh {{ host }} 'cd qa && just up'
+    ssh {{ host }} 'cd qa && just restart'
 
 stage:
     just deploy ${STAGE}
