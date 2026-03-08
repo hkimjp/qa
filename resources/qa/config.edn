@@ -21,7 +21,6 @@
     ;; markdown preview
     [:post "/markdown-preview" {params :form-params}] [:qa.handler.core/markdown-preview params]
     ;; answers
-    ;[:post "/a" {params :multipart-params}] [:qa.handler.core/answer-create params]
     [:post "/a" {params :form-params}] [:qa.handler.core/answer-create params]
     [:get  "/as/" n] ^:auth [:qa.handler.core/answers ^int n]
     ;; goods

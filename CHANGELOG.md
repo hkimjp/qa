@@ -20,7 +20,9 @@
 
 ## 3.0.4-SNAPSHOT
 
-- hiccup2
+- migrated hiccup1-> hiccup2
+- changed config.edn: useless `:multipart-params` to `:form-params`,
+  also codes.
 
 ## 3.0.3 (2026-03-08)
 
