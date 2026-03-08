@@ -13,7 +13,7 @@
 
 - filter の初期値を環境変数でもつ。admin がコントロールできる。
   filter から self を抜いて適用する。
-- 過去n時間内に投稿、リプライがあった記事に new マークをつける。
+- 過去 n 時間内に投稿、リプライがあった記事に new マークをつける。
 - :duct.server.http/jetty {:port #duct/env ["PORT" Int :or 3030]} ができない。
   duct.core.env/coerce
 - systemd への依存をやめる。スタンドアロンな QA に。特に、時刻を見てモードを変える部分。
@@ -21,15 +21,13 @@
 
     ports:
       - 127.0.0.1:8530:8530
-- replace markdown-clj with nextjournal/markdown
-- cheshiere+hato を http-kit/client+Accept:application/edn でリプレースする。
 
-    https eq.local:3022/api/user/hkimura Accept:application/edn
 
 ## 3.0.3-SNAPSHOT
 
+- replaced `markdown-clj` with `nextjournal/markdown`
 - Syntax error macroexpanding clojure.core/let at (qa/handler/auth.clj:34:5).
-- replace hato+cheshier by http-kit+(charred)
+- replaced hato+cheshier by http-kit+(charred)
 - added `192.168.0.15 l22` in `/etc/hosts`.
   auth server for development is `http://l22/api/user/<login>`.
 - replaced cheshiere+hato by  http-kit/client
