@@ -18,6 +18,11 @@
   duct.core.env/coerce
 
 
+## 3.1.0 (2026-03-08)
+
+- release 3.1.0
+- code clean up
+
 ## 3.0.4 (2026-03-08)
 
 - migrated hiccup1-> hiccup2
