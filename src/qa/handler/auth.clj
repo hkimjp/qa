@@ -25,12 +25,6 @@
   (fn [req]
     (index-page req)))
 
-(comment
-  (if-not (env :auth)
-    "no auth"
-    "auth")
-  :rcf)
-
 (defn auth? [login password]
   (if-not (env :auth)
     (= login "hkimura")

@@ -13,8 +13,13 @@
 - 過去 n 時間内に投稿、リプライがあった記事に new マークをつける。
 - :duct.server.http/jetty {:port #duct/env ["PORT" Int :or 3030]} ができない。
   duct.core.env/coerce
+
+
+## 3.1.3-SNAPSHOT
+
+* 「good を押した人」が取れてない。
 - 最近の投稿と最近のいいねは QA_START 以前もリストするが。
-- readers 他、アンカーの色が全部黒はどうかな。
+  => まあ良い。QA が増えれば消える。
 
 ## 3.1.2 (2026-03-08)
 
