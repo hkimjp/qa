@@ -6,8 +6,8 @@
    [nextjournal.markdown :as md]
    [ring.util.anti-forgery :refer [anti-forgery-field]]))
 
-(def ^:private version "3.1.0")
-(def ^:private updated "2026-03-08 14:34:14")
+(def ^:private version "3.1.1")
+(def ^:private updated "2026-03-08 15:20:01")
 
 (def ^:private wrap-at 80)
 
@@ -132,7 +132,7 @@
    [:h2 "QA: Questions"]
    [:p "すべての QA に目を通すのがルール。"]
    [:p
-    [:a {:href "/recents" :class "btn btn-success btn-sm"} "最近の投稿"]
+    [:a {:href "/recents" :class "btn btn-success btn-sm"} "最近の回答"]
     " "
     [:a {:href "/goods" :class "btn btn-warning btn-sm"} "最近のいいね"]
     " "

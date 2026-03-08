@@ -18,14 +18,11 @@
      answers-page
      goods-page
      index-page
-     ; markdown-page
-     ; markdown-preview-page
      question-new-page
      questions-page
      recents-page
      recent-goods-page
      readers-page
-     ;; points-page
      preview-page]]
    [taoensso.timbre :refer [info debug] :as timbre]))
 
@@ -70,6 +67,10 @@
           counts (answers/count-answers db)]
       (readers/create-reader db (get-login request) "qs" 0)
       (questions-page ret counts))))
+
+(comment
+  questions-start
+  :rcf)
 
 (defmethod ig/init-key :qa.handler.core/questions-all [_ {:keys [db]}]
   (fn [_]
