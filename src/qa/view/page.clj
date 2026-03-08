@@ -88,13 +88,9 @@
    [:form {:method :post :action "/login"}
     (h/raw (anti-forgery-field))
     [:input {:name "login" :placeholder "アカウント" :autocomplete "username"}]
-    ;(text-field {:placeholder "アカウント"} "login")
     [:input {:name "password" :type "password" :placeholder "パスワード"
              :autocomplete "current-password"}]
-    ;(password-field {:placeholder "パスワード"} "password")
-    [:button "login"]
-    ;(submit-button "login"))
-    ]
+    [:button "login"]]
    [:br]
    [:div {:class "row"}
     [:div {:class "col-3"}
@@ -146,6 +142,12 @@
   [cs q_id]
   (:count (first (filter #(= (:q_id %) q_id) cs)) 0))
 
+(defn- abbrev
+  ([s] (abbrev 30 s))
+  ([n s] (if (empty? s)
+           s
+           (apply str (take n s)))))
+
 (defn questions-page [qs cs]
   (page
    [:h2 "QA: Questions"]
@@ -159,26 +161,25 @@
     " "
     [:a {:href "/about" :class "btn btn-primary btn-sm"} "About"]
     " "
-    ;; [:a {:href "/md" :class "btn btn-info btn-sm"} "markdown道場"]
-    ;; " "
     [:a {:href "/logout" :class "btn btn-warning btn-sm"} "logout"]]
    [:p [:a.link-underline-light
         {:href "/readers/qs/0"}
         "readers"]]
+   ;;id, login 👉 goods,
    (for [q qs]
      [:p
       (:id q)
       ", "
-      (h/raw (-> (:q q) str/split-lines first))
-           ;;(escape-html (ss 30 (:q q)))
+      ; (h/raw (-> (:q q) str/split-lines first))
       " "
       [:a.link-underline-light
        {:href (str "/my-goods/" (:nick q))}
        (:nick q)]
       " "
-      [:a.link-underline-light
-       {:href (str "/as/" (:id q))}
-       (str " 👉 " (answer-count cs (:id q)))]])
+      (str " 👉 " (answer-count cs (:id q)))
+      ", "
+      [:a {:href (str "/as/" (:id q))} (->> (:q q) (abbrev 30))]])
+   ;;
    [:p [:a {:href "/q" :class "btn btn-primary btn-sm"} "new question"]]))
 
 ;;👁️🚀✔️☑️➰➿⚯☞⍇⍈
