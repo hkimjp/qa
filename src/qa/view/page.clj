@@ -2,11 +2,13 @@
   (:require
    [ataraxy.response :as response]
    [clojure.string :as str]
+   ;;
    [hiccup.page :refer [html5]]
    [hiccup.form
     :refer
     [form-to text-field password-field submit-button text-area hidden-field]]
    [hiccup.util :refer [escape-html]]
+   ;;
    ;;[markdown.core :refer [md-to-html-string]]
    [nextjournal.markdown :as md]
    [ring.util.anti-forgery :refer [anti-forgery-field]]))
@@ -48,23 +50,19 @@
    (html5
     [:head
      [:meta {:charset "utf-8"}]
-     [:meta {:name "viewport" :content "width=device-width, initial-scale=1"}]]
-    #_[:link
-       {:rel "stylesheet"
-        :type "text/css"
-        :href "/css/bootstrap.min.css"}]
-    [:link
-     {:href "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      :rel  "stylesheet"
-      :integrity "sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-      :crossorigin "anonymous"}]
-    [:link
-     {:rel "stylesheet"
-      :type "text/css"
-      :href "/css/styles.css"}]
-    [:script {:type "text/javascript"}
-     "function ok() {return window.confirm('OK?');}"]
-    [:title "QA"]
+     [:meta {:name "viewport" :content "width=device-width, initial-scale=1"}]
+     [:link
+      {:href "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+       :rel  "stylesheet"
+       :integrity "sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+       :crossorigin "anonymous"}]
+     [:link
+      {:rel "stylesheet"
+       :type "text/css"
+       :href "/css/styles.css"}]
+     [:script {:type "text/javascript"}
+      "function ok() {return window.confirm('OK?');}"]
+     [:title "QA"]]
     [:body
      [:div {:class "container"}
       contents
