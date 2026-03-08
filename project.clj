@@ -1,4 +1,4 @@
-(defproject qa "3.1.1"
+(defproject qa "3.1.2"
   :description "qa system for my literacy classes"
   :url "https://qa.melt.kyutech.ac.jp"
   :min-lein-version "2.0.0"
@@ -15,25 +15,15 @@
    [duct/module.sql "0.6.1"]
    [duct/module.web "0.7.4"]
    [environ/environ "1.2.0"]
-   ;;
    [hiccup/hiccup "2.0.0"]
-   ;[hiccup/hiccup "1.0.5"]
-   ;;
-   ; [markdown-clj "1.12.7"] ;
    [io.github.nextjournal/markdown "0.7.222"]
-   ;;
    [org.clojure/clojure "1.12.4"]
    [org.postgresql/postgresql "42.7.10"]
-   ;;
-   ; [cheshire/cheshire "5.13.0"] ; no 6.1.0
-   ; [hato/hato "1.0.0"]
    [http-kit/http-kit "2.8.1"]
-   ;;
    [ring/ring-anti-forgery "1.4.0"]
-   [ring/ring-core "1.15.3"] ; dependency?
+   [ring/ring-core "1.15.3"]
    [ring/ring-defaults "0.7.0"]
    [ring/ring-jetty-adapter "1.15.3"]
-   ;;
    [dev.weavejester/medley "1.9.0"]
    [com.taoensso/timbre "6.5.0"]] ; no 6.8.0. should stay.
 

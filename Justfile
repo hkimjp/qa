@@ -20,7 +20,7 @@ stop:
     echo killed PID ${PID}
 
 up:
-    docker compose up
+    docker compose up -d
 
 down:
     docker compose down
@@ -42,3 +42,7 @@ stage:
 
 prod:
     just deploy ${PROD}
+
+clean:
+    rm -rf target
+    fd -I \.bak$ --exec rm

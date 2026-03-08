@@ -6,8 +6,8 @@
    [nextjournal.markdown :as md]
    [ring.util.anti-forgery :refer [anti-forgery-field]]))
 
-(def ^:private version "3.1.1")
-(def ^:private updated "2026-03-08 15:20:01")
+(def ^:private version "3.1.2")
+(def ^:private updated "2026-03-08 16:40:32")
 
 (def ^:private wrap-at 80)
 
@@ -98,7 +98,7 @@
     [:ul
      [:li "回答しやすい質問をする。回答できる質問には回答する。"]
      [:li "質問はテキスト、回答は Markdown で。"]
-     [:li "「いいね 👍」は一回答にひとり一回だけです。"]
+     [:li "「👍」は一回答にひとり一回だけです。"]
      [:li "ログイン時の Invalid anti-forgery token は認証切れ。再読み込みで。"]]]))
 
 (defn question-new-page []
@@ -114,7 +114,7 @@
                 :name "question"
                 :placeholder "マークダウン不可。1 行 60 文字以内に改行するように。"}]
     [:br]
-    [:button "submit"]]))
+    [:button.btn.btn-primary.btn-sm "submit"]]))
 
 ;; 回答がついてなかったら 0 を表示する。
 (defn- answer-count
@@ -132,18 +132,16 @@
    [:h2 "QA: Questions"]
    [:p "すべての QA に目を通すのがルール。"]
    [:p
-    [:a {:href "/recents" :class "btn btn-success btn-sm"} "最近の回答"]
+    [:a {:href "/recents" :class "btn btn-primary btn-sm"} "最近の回答"]
     " "
-    [:a {:href "/goods" :class "btn btn-warning btn-sm"} "最近のいいね"]
+    [:a {:href "/goods" :class "btn btn-primary btn-sm"} "最近の👍"]
     " "
     [:a {:href "/q" :class "btn btn-primary btn-sm"} "new question"]
     " "
     [:a {:href "/about" :class "btn btn-primary btn-sm"} "About"]
     " "
     [:a {:href "/logout" :class "btn btn-warning btn-sm"} "logout"]]
-   [:p [:a.link-underline-light
-        {:href "/readers/qs/0"}
-        "readers"]]
+   [:p [:a {:href "/readers/qs/0"} "readers"]]
    ;;id, login 👉 goods, first line (link to answers)
    (for [q qs]
      [:p
@@ -172,9 +170,7 @@
    [:div [:a {:href "/qs" :class "btn btn-success btn-sm"} "QA Top"]]
    [:h4 (:id q) ", " (:nick q) "さんの質問 " (date-time (:ts q)) ","]
    [:pre {:class "question"} (my-escape-html (wrap wrap-at (:q q)))]
-   [:p [:a.link-underline-light
-        {:href (str "/readers/as/" (:id q))}
-        "readers"]]
+   [:p [:a {:href (str "/readers/as/" (:id q))} "readers"]]
    [:hr]
    [:h4 "Answers"]
    (for [a answers]
@@ -231,10 +227,10 @@
       ", "
       (date-time (:ts a))
       " "
-      [:a.link-underline-light
+      [:a
        {:href (str "/as/" (:q_id a))}
        (h/raw (ss 28 (:a a)))]
-      "..." (:nick a)])
+      "... by " (:nick a)])
    [:p [:a {:href "/qs" :class "btn btn-success btn-sm"} "QA Top"]]))
 
 (defn recent-goods-page [answers]
@@ -247,7 +243,7 @@
       ", "
       (date-time (:ts a))
       " "
-      [:a.link-underline-light
+      [:a
        {:href  (str "/as/" (:q_id a))}
        (ss 28 (:q a)) "..."]])))
 

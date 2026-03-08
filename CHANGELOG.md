@@ -2,23 +2,23 @@
 
 ## Unreleased
 
-- 投稿や回答があったときにデータベースをアップデートする仕組み
-- (reset) で毎回、クラッシュ。lein clean のあとクラッシュは減る。
+
+- (reset) で毎回、クラッシュ。`lein clean` のあとクラッシュは減る。
 - いいねにアラートつけるか
 
     [:a {:href (str "/good/" (:id q) "/" (:id a))
        :onclick "alert('いいと思うところは何？ Markdown で書けないか'); return true;"}
       goods]
 
-- filter の初期値を環境変数でもつ。admin がコントロールできる。
-  filter から self を抜いて適用する。
 - 過去 n 時間内に投稿、リプライがあった記事に new マークをつける。
 - :duct.server.http/jetty {:port #duct/env ["PORT" Int :or 3030]} ができない。
   duct.core.env/coerce
-- 最近の投稿は、最近の回答だな。
 - 最近の投稿と最近のいいねは QA_START 以前もリストするが。
 - readers 他、アンカーの色が全部黒はどうかな。
 
+## 3.1.2 (2026-03-08)
+
+- 最近の投稿 -> 最近の回答
 
 ## 3.1.1 (2026-03-08)
 
