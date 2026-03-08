@@ -23,7 +23,7 @@
       - 127.0.0.1:8530:8530
 
 
-## 3.0.3-SNAPSHOT
+## 3.0.3 (2026-03-08)
 
 - replaced `markdown-clj` with `nextjournal/markdown`
 - Syntax error macroexpanding clojure.core/let at (qa/handler/auth.clj:34:5).
