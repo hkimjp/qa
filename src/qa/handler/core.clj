@@ -18,8 +18,8 @@
      answers-page
      goods-page
      index-page
-     markdown-page
-     markdown-preview-page
+     ; markdown-page
+     ; markdown-preview-page
      question-new-page
      questions-page
      recents-page
@@ -89,7 +89,7 @@
   (fn [{{:keys [q_id answer]} :params :as req}]
     (let [nick (get-login req)]
       (debug "answer-create: q_id" q_id "nick" nick "answer" answer)
-      (answers/create db (Integer/parseInt q_id) nick answer)
+      (answers/create db (parse-long q_id) nick answer)
       [::response/found (str "/as/" q_id)])))
 
 ;; /as/3 のように呼ばれる。
@@ -176,14 +176,14 @@
   (fn [_]
     [::response/found (str "/since/" (jt/local-date))]))
 
-(defmethod ig/init-key :qa.handler.core/md [_ _]
-  (fn [req]
-    (markdown-page (get-login req))))
+; (defmethod ig/init-key :qa.handler.core/md [_ _]
+;   (fn [req]
+;     (markdown-page (get-login req))))
 
-(defmethod ig/init-key :qa.handler.core/md-post [_ {:keys [db]}]
-  (fn [{[_ {:strs [md]}] :ataraxy/result :as request}]
-    (readers/create-reader db (get-login request) "md" 0)
-    (markdown-preview-page md)))
+; (defmethod ig/init-key :qa.handler.core/md-post [_ {:keys [db]}]
+;   (fn [{[_ {:strs [md]}] :ataraxy/result :as request}]
+;     (readers/create-reader db (get-login request) "md" 0)
+;     (markdown-preview-page md)))
 
 (def grading
   (-> (jdbc/get-datasource

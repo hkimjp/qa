@@ -116,18 +116,8 @@
    [:h2 "QA: Create a Question"]
    [:p "具体的な質問じゃないと回答つけにくい。"
     "短すぎる質問も長すぎる質問と同じく受信しない。"]
-   ; (form-to {:enctype "multipart/form-data"
-   ;           :onsubmit "return confirm('その質問は具体的か？')"}
-   ;          [:post "/q"]
-   ;          (anti-forgery-field)
-   ;          (text-area {:id "question"
-   ;                      :placeholder "テキストで。60 文字以内に改行するように。マークダウン不可。"}
-   ;                     "question")
-   ;          [:br]
-   ;          (submit-button {:class "btn btn-primary btn-sm"} "submit"))
    [:form {:method :post
            :action "/q"
-           ;;:enctype "multipart/form-data"
            :onsubmit "return confirm('その質問は具体的？')"}
     (h/raw (anti-forgery-field))
     [:textarea {:id "question"
@@ -164,21 +154,16 @@
    [:p [:a.link-underline-light
         {:href "/readers/qs/0"}
         "readers"]]
-   ;;id, login 👉 goods,
+   ;;id, login 👉 goods, first line (link to answers)
    (for [q qs]
      [:p
       (:id q)
       ", "
-      ; (h/raw (-> (:q q) str/split-lines first))
-      " "
-      [:a.link-underline-light
-       {:href (str "/my-goods/" (:nick q))}
-       (:nick q)]
+      [:a.link-underline-light {:href (str "/my-goods/" (:nick q))} (:nick q)]
       " "
       (str " 👉 " (answer-count cs (:id q)))
       ", "
       [:a {:href (str "/as/" (:id q))} (->> (:q q) (abbrev 30))]])
-   ;;
    [:p [:a {:href "/q" :class "btn btn-primary btn-sm"} "new question"]]))
 
 ;;👁️🚀✔️☑️➰➿⚯☞⍇⍈
@@ -206,7 +191,6 @@
    [:h4 "Answers"]
    (for [a answers]
      (let [goods (goods (:g a))]
-      ;;  (println "goods" goods)
        [:div
         [:p [:span {:class "nick"} (:nick a)] "'s answer " (date-time (:ts a)) ","]
         (md-to-html-string (:a a))
@@ -229,8 +213,8 @@
     ;             "answer")
     [:form {:method :post :action "/markdown-preview"}
      (h/raw (anti-forgery-field))
-     [:input {:type "hidden" :name "q_id"} (:id q)]
-     [:textarea {:id "answer" :placeholder "markdown OK"} "answer"]
+     [:input {:type "hidden" :name "q_id" :value (:id q)}]
+     [:textarea {:id "answer" :name "answer" :placeholder "your answer please. markdown OK"}]
      [:br]
      ; [:a {:href "https://mp.melt.kyutech.ac.jp"
      ;      :class "btn btn-info btn-sm"}
@@ -315,39 +299,39 @@
         [:span [:a {:href (str "/my-goods/" user)} user] " "])
       "(合計 " (count readers) "回、" (count uniq-readers) "人)"])))
 
-(def ^:private markdown-clj-url "https://github.com/yogthos/markdown-clj")
+; (def ^:private markdown-clj-url "https://github.com/yogthos/markdown-clj")
 
-(defn markdown-page [_login]
-  (page
-   [:h2 "Markdown 道場"]
-   [:p "powered by markdown-clj "
-    [:a {:href (str markdown-clj-url "#supported-syntax")}
-     (str "&lt;" markdown-clj-url ">")]]
-    ; (form-to
-    ; [:post "/md"]
-    ; (anti-forgery-field)
-    ; (text-area {:id "md"
-    ;             :placeholder
-    ;             (str login "さん専用マークダウン練習ページ。"
-    ;                  "練習しないとできるようにならないよ。")}
-    ;            "md")
-    ; (submit-button {:class "btn btn-info btn-sm"} "preview"))
-   [:form {:method :post :action "/md"}
-    (h/raw (anti-forgery-field))
-    [:textarea {:id "md" :placeholder "マークダウンを練習しましょう。"}]
-    [:button.btn.btn-info.btn.sm "preview"]]))
+; (defn markdown-page [_login]
+;   (page
+;    [:h2 "Markdown 道場"]
+;    [:p "powered by markdown-clj "
+;     [:a {:href (str markdown-clj-url "#supported-syntax")}
+;      (str "&lt;" markdown-clj-url ">")]]
+;     ; (form-to
+;     ; [:post "/md"]
+;     ; (anti-forgery-field)
+;     ; (text-area {:id "md"
+;     ;             :placeholder
+;     ;             (str login "さん専用マークダウン練習ページ。"
+;     ;                  "練習しないとできるようにならないよ。")}
+;     ;            "md")
+;     ; (submit-button {:class "btn btn-info btn-sm"} "preview"))
+;    [:form {:method :post :action "/md"}
+;     (h/raw (anti-forgery-field))
+;     [:textarea {:id "md" :placeholder "マークダウンを練習しましょう。"}]
+;     [:button.btn.btn-info.btn.sm "preview"]]))
 
-(defn markdown-preview-page [md]
-  (page
-   [:h2 "Markdown 道場(Preview)"]
-   [:p "powered by markdown-clj "
-    [:a {:href (str markdown-clj-url "#supported-syntax")}
-     (str "&lt;" markdown-clj-url ">")]]
-   [:hr]
-   (md-to-html-string md)
-   [:hr]
-   [:p "Markdown 道場へはブラウザの「戻る」で。"]
-   [:p [:a {:href "/qs" :class "btn btn-success btn-sm"} "QA top"]]))
+; (defn markdown-preview-page [md]
+;   (page
+;    [:h2 "Markdown 道場(Preview)"]
+;    [:p "powered by markdown-clj "
+;     [:a {:href (str markdown-clj-url "#supported-syntax")}
+;      (str "&lt;" markdown-clj-url ">")]]
+;    [:hr]
+;    (md-to-html-string md)
+;    [:hr]
+;    [:p "Markdown 道場へはブラウザの「戻る」で。"]
+;    [:p [:a {:href "/qs" :class "btn btn-success btn-sm"} "QA top"]]))
 
 (defn points-page [name sid ret]
   (page
@@ -367,8 +351,8 @@
    ;  (submit-button {:class "btn btn-info btn-sm"} "投稿"))
    [:form {:method :post :action "/a"}
     (h/raw (anti-forgery-field))
-    [:input {:type "hidden" :id "q_id"} q_id]
-    [:input {:type "hidden" :id "answer"} answer]
+    [:input {:type "hidden" :id "q_id" :name "q_id" :value q_id}]
+    [:input {:type "hidden" :id "answer" :name "answer" :value answer}]
     [:button.btn.btn-info.btn-sm "投稿"]]
    [:p "投稿ボタンを押さない限り、QA には反映しない。" [:br]
     "思ったとおりじゃない時はブラウザの「戻る」で修正後に投稿する。"]))
