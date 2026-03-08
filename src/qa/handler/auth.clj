@@ -25,9 +25,15 @@
   (fn [req]
     (index-page req)))
 
+(comment
+  (if-not (env :auth)
+    "no auth"
+    "auth")
+  :rcf)
+
 (defn auth? [login password]
-  (if (env :qa-dev)
-    (and (= login "hkimura") true) ; any password
+  (if-not (env :auth)
+    (= login "hkimura") ; any password
     (try
       (let [url (str (env :auth) login) ; bug! (env :auth) is empty.
             _  (info {:level :info :id "auth?" :msg url})
@@ -40,7 +46,7 @@
                    :password)
           ;;
             ]
-        (info "pw:" pw)
+        (debug "pw:" pw)
         (hashers/check password pw))
       (catch Exception e
         (info {:level :error :msg (.getMessage e)})))))
