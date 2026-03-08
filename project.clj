@@ -15,9 +15,11 @@
    [duct/module.sql "0.6.1"]
    [duct/module.web "0.7.4"]
    [environ/environ "1.2.0"]
-   [hiccup/hiccup "1.0.5"] ; no 2.0.0
    ;;
-   ;; [markdown-clj "1.12.7"] ;
+   [hiccup/hiccup "2.0.0"]
+   ;[hiccup/hiccup "1.0.5"]
+   ;;
+   ; [markdown-clj "1.12.7"] ;
    [io.github.nextjournal/markdown "0.7.222"]
    ;;
    [org.clojure/clojure "1.12.4"]
