@@ -2,15 +2,7 @@
   (:require
    [ataraxy.response :as response]
    [clojure.string :as str]
-   ;;
-   ; [hiccup.page :refer [html5]]
-   ; [hiccup.form
-   ;  :refer
-   ;  [form-to text-field password-field submit-button text-area hidden-field]]
-   ; [hiccup.util :refer [escape-html]]
    [hiccup2.core :as h]
-   ;;
-   ;;[markdown.core :refer [md-to-html-string]]
    [nextjournal.markdown :as md]
    [ring.util.anti-forgery :refer [anti-forgery-field]]))
 
@@ -19,7 +11,6 @@
 
 (def ^:private wrap-at 80)
 
-;; from r99c.route.home/wrap
 (defn- wrap-aux
   [n s]
   (if (< (count s) n)
@@ -42,7 +33,7 @@
   [tm]
   (subs (str tm) 0 19))
 
-;;
+;; markdown-clj to nextjournal.markdown
 (defn md-to-html-string [s]
   (-> s md/parse md/->hiccup))
 
@@ -68,7 +59,6 @@
           [:div {:class "container"}
            contents
            [:p]
-      ;; [:p [:a {:href "/logout" :class "btn btn-warning btn-sm"} "logout"]]
            [:hr]
            "programmed by hkimura. " version]]))])
 
@@ -172,8 +162,6 @@
   [n]
   (repeat n "👍"))
 
-;; 0.7.6, p ではなく pre でメッセージを表示したことに伴い、
-;; 過去に入れてもらった <br> を取り除く。
 (defn- my-escape-html [s]
   (-> (str/replace s #"<br>" "")
       h/raw))
@@ -202,25 +190,13 @@
             {:href (str "/who-goods/" (:id a))}
             "   "])]]))
    [:p
-    ;; form の内側に [:a] で道場をリンクしている。submit 先で分岐できれば、
-    ;; タイプしたメッセージをプレビューできるか？
-    ; (form-to
-    ;  [:post "/markdown-preview"]
-    ;  (anti-forgery-field)
-    ;  (hidden-field "q_id" (:id q))
-    ;  (text-area {:id "answer"
-    ;              :placeholder "markdown OK"}
-    ;             "answer")
     [:form {:method :post :action "/markdown-preview"}
      (h/raw (anti-forgery-field))
      [:input {:type "hidden" :name "q_id" :value (:id q)}]
-     [:textarea {:id "answer" :name "answer" :placeholder "your answer please. markdown OK"}]
+     [:textarea {:id "answer" :name "answer"
+                 :placeholder "your answer please. markdown OK"}]
      [:br]
-     ; [:a {:href "https://mp.melt.kyutech.ac.jp"
-     ;      :class "btn btn-info btn-sm"}
-     ;  "Markdown Preview"]
      " "
-     ;(submit-button {:class "btn btn-primary btn-sm"} "preview")
      [:button.btn.btn-primary.btn-sm "preview"]
      [:p "自分のマークダウンを preview で確認して投稿する"]]]
    [:p]
@@ -230,12 +206,6 @@
   (page
    [:h2 "QA Admin"]
    [:p "who goods?"]
-   ; (form-to
-   ;  [:post "/admin/goods"]
-   ;  (anti-forgery-field)
-   ;  "good " (text-field {:id "n" :size 3} "n")
-   ;  " "
-   ;  (submit-button {:class "btn btn-primary btn-sm"} "submit"))
    [:form {:method :post :action "/admin/goods"}
     (h/raw (anti-forgery-field))
     "good " [:input {:id "n" :size 3 :name "n"}]
@@ -292,46 +262,9 @@
      [:p #_(->> uniq-readers
                 (interpose " ")
                 (apply str))
-      ; [[:a {:href "/my-goods/hkimura"} "hkimura"]
-      ;  [:a {:href "/my-goods/hkimura"} "hkimura"]]
-      ;_uniq-readers
       (for [user uniq-readers]
         [:span [:a {:href (str "/my-goods/" user)} user] " "])
       "(合計 " (count readers) "回、" (count uniq-readers) "人)"])))
-
-; (def ^:private markdown-clj-url "https://github.com/yogthos/markdown-clj")
-
-; (defn markdown-page [_login]
-;   (page
-;    [:h2 "Markdown 道場"]
-;    [:p "powered by markdown-clj "
-;     [:a {:href (str markdown-clj-url "#supported-syntax")}
-;      (str "&lt;" markdown-clj-url ">")]]
-;     ; (form-to
-;     ; [:post "/md"]
-;     ; (anti-forgery-field)
-;     ; (text-area {:id "md"
-;     ;             :placeholder
-;     ;             (str login "さん専用マークダウン練習ページ。"
-;     ;                  "練習しないとできるようにならないよ。")}
-;     ;            "md")
-;     ; (submit-button {:class "btn btn-info btn-sm"} "preview"))
-;    [:form {:method :post :action "/md"}
-;     (h/raw (anti-forgery-field))
-;     [:textarea {:id "md" :placeholder "マークダウンを練習しましょう。"}]
-;     [:button.btn.btn-info.btn.sm "preview"]]))
-
-; (defn markdown-preview-page [md]
-;   (page
-;    [:h2 "Markdown 道場(Preview)"]
-;    [:p "powered by markdown-clj "
-;     [:a {:href (str markdown-clj-url "#supported-syntax")}
-;      (str "&lt;" markdown-clj-url ">")]]
-;    [:hr]
-;    (md-to-html-string md)
-;    [:hr]
-;    [:p "Markdown 道場へはブラウザの「戻る」で。"]
-;    [:p [:a {:href "/qs" :class "btn btn-success btn-sm"} "QA top"]]))
 
 (defn points-page [name sid ret]
   (page
@@ -339,16 +272,10 @@
    (for [item ret]
      [:p (str item)])))
 
-(defn preview-page [{:strs [q_id answer] :as req}]
+(defn preview-page [{:strs [q_id answer]}]
   (page
    [:h2 "Check Your Markdown"]
    [:div {:class "preview"} (md-to-html-string answer)]
-   ; (form-to
-   ;  [:post "/a"]
-   ;  (anti-forgery-field)
-   ;  (hidden-field "q_id" q_id)
-   ;  (hidden-field "answer" answer)
-   ;  (submit-button {:class "btn btn-info btn-sm"} "投稿"))
    [:form {:method :post :action "/a"}
     (h/raw (anti-forgery-field))
     [:input {:type "hidden" :id "q_id" :name "q_id" :value q_id}]

@@ -176,42 +176,12 @@
   (fn [_]
     [::response/found (str "/since/" (jt/local-date))]))
 
-; (defmethod ig/init-key :qa.handler.core/md [_ _]
-;   (fn [req]
-;     (markdown-page (get-login req))))
-
-; (defmethod ig/init-key :qa.handler.core/md-post [_ {:keys [db]}]
-;   (fn [{[_ {:strs [md]}] :ataraxy/result :as request}]
-;     (readers/create-reader db (get-login request) "md" 0)
-;     (markdown-preview-page md)))
-
 (def grading
   (-> (jdbc/get-datasource
        {:dbtype "sqlite"
         :dbname "db/grading.sqlite3"})
       (jdbc/with-options
         {:builder-fn rs/as-unqualified-lower-maps})))
-
-; (defmethod ig/init-key :qa.handler.core/points [_ _]
-;   (fn [request]
-;     (let [login (get-login request)
-;           ret (sql/query
-;                grading
-;                ["select * from grading where login=?" login])]
-;       (if (empty? ret)
-;         [::response/ok "no data"]
-;         (let [ret (first ret)]
-;           (points-page
-;            (:name ret)
-;            (:sid ret)
-;            (->> (dissoc ret
-;                         :created_at
-;                         :id
-;                         :login
-;                         :name
-;                         :sid
-;                         :updated_at)
-;                 (sort-by key))))))))
 
 ;; 2025 python-a
 (defmethod ig/init-key :qa.handler.core/points [_ _]
