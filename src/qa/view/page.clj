@@ -14,8 +14,8 @@
    [nextjournal.markdown :as md]
    [ring.util.anti-forgery :refer [anti-forgery-field]]))
 
-(def ^:private version "3.0.3")
-(def ^:private updated "2026-03-08 11:15:58")
+(def ^:private version "3.0.4")
+(def ^:private updated "2026-03-08 14:16:49")
 
 (def ^:private wrap-at 80)
 

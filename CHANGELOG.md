@@ -18,7 +18,7 @@
   duct.core.env/coerce
 
 
-## 3.0.4-SNAPSHOT
+## 3.0.4 (2026-03-08)
 
 - migrated hiccup1-> hiccup2
 - changed config.edn: useless `:multipart-params` to `:form-params`,
