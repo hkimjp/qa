@@ -15,7 +15,7 @@
     [:get "/points"] ^:auth [:qa.handler.core/points]
     ;; questions
     [:get  "/q"] ^:auth [:qa.handler.core/question-new]
-    [:post "/q" {params :multipart-params}] [:qa.handler.core/question-create params]
+    [:post "/q" {params :form-params}] [:qa.handler.core/question-create params]
     [:get  "/qs"] ^:auth [:qa.handler.core/questions]
     [:get  "/qs-all"] ^:auth [:qa.handler.core/questions-all]
     ;; markdown preview

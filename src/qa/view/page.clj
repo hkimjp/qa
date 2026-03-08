@@ -115,8 +115,7 @@
   (page
    [:h2 "QA: Create a Question"]
    [:p "具体的な質問じゃないと回答つけにくい。"
-    "短すぎる質問も長すぎる質問と同じく受信しない。"
-    [:a {:href "/"} "注意事項"]]
+    "短すぎる質問も長すぎる質問と同じく受信しない。"]
    ; (form-to {:enctype "multipart/form-data"
    ;           :onsubmit "return confirm('その質問は具体的か？')"}
    ;          [:post "/q"]
@@ -128,12 +127,12 @@
    ;          (submit-button {:class "btn btn-primary btn-sm"} "submit"))
    [:form {:method :post
            :action "/q"
-           :enctype "multipart/formdata"
+           ;;:enctype "multipart/form-data"
            :onsubmit "return confirm('その質問は具体的？')"}
     (h/raw (anti-forgery-field))
     [:textarea {:id "question"
-                :placeholder "マークダウン不可。1行60文字以内に改行するように。"}
-     "question"]
+                :name "question"
+                :placeholder "マークダウン不可。1 行 60 文字以内に改行するように。"}]
     [:br]
     [:button "submit"]]))
 

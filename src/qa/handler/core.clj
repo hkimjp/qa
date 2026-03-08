@@ -59,6 +59,7 @@
     (let [nick (get-login req)
           question (get params "question")]
       (debug "question-create" "nick" nick "question" question)
+      (debug "params " params)
       (questions/create db nick question)
       [::response/found "/qs"])))
 
