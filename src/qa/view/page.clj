@@ -6,8 +6,8 @@
    [nextjournal.markdown :as md]
    [ring.util.anti-forgery :refer [anti-forgery-field]]))
 
-(def ^:private version "3.1.2")
-(def ^:private updated "2026-03-08 16:40:32")
+(def ^:private version "3.1.3")
+(def ^:private updated "2026-03-08 19:09:35")
 
 (def ^:private wrap-at 80)
 
@@ -182,9 +182,7 @@
              {:href (str "/good/" (:id q) "/" (:id a))}
              goods]
          (when (= nick "hkimura")
-           [:a.link-underline-light
-            {:href (str "/who-goods/" (:id a))}
-            "   "])]]))
+           [:a {:href (str "/who-goods/" (:id a))} "　"])]]))
    [:p
     [:form {:method :post :action "/markdown-preview"}
      (h/raw (anti-forgery-field))

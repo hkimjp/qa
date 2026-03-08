@@ -15,11 +15,16 @@
   duct.core.env/coerce
 
 
-## 3.1.3-SNAPSHOT
+## 3.1.3 (2026-03-08)
 
-* 「good を押した人」が取れてない。
-- 最近の投稿と最近のいいねは QA_START 以前もリストするが。
+- fixed: 「good を押した人」が取れてない。
+
+    (when (= nick "hkimura")
+           [:a {:href (str "/who-goods/" (:id a))} "　"])
+
+- 最近の投稿と最近のいいねは QA_START 以前もリストする。
   => まあ良い。QA が増えれば消える。
+
 
 ## 3.1.2 (2026-03-08)
 
