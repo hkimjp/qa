@@ -1,35 +1,66 @@
 (ns qa.handler.auth
   (:require
    [buddy.hashers :as hashers]
+   [clojure.edn]
    ; [clojure.string :as str]
    [environ.core :refer [env]]
-   [hato.client :as hc]
+   ; [hato.client :as hc]
+   [org.httpkit.client :as hk]
    [integrant.core :as ig]
    [qa.view.page :refer [index-page]]
    [ring.util.response :as resp]
    [taoensso.timbre :refer [info debug] :as timbre]))
 
-;; see definition of `auth?`
-;; (def l22 "https://l22.melt.kyutech.ac.jp")
-
 (comment
-  (env :qa-dev)
-  (:body (hc/get "https://l22.melt.kyutech.ac.jp/api/user/hkimura"))
-  (:body (hc/get "https://l22.melt.kyutech.ac.jp/api/user/hkimura" {:as :json}))
+  (let [url "http://eq.local:3022/api/user/hkimura"]
+    [(-> (hc/get url {:as :json})
+         :body)
+     (-> @(hk/get url {:headers {"Accept" "application/edn"}})
+         :body
+         slurp
+         clojure.edn/read-string)])
   :rcf)
 
 (defmethod ig/init-key :qa.handler.auth/login [_ _]
   (fn [req]
     (index-page req)))
 
+(comment
+  (if-not (env :auth)
+    "no auth"
+    "auth")
+  :rcf)
+
 (defn auth? [login password]
-  (debug "auth?" login password)
-  (if (env :qa-dev)
-    (and (= login "hkimura") true) ; any password
-    (let [ep (str "https://l22.melt.kyutech.ac.jp/api/user/" login)
-          user (:body (hc/get ep {:as :json}))];;
-      (info "user=>" user "password")
-      (and (some? user) (hashers/check password (:password user))))))
+  (if-not (env :auth)
+    (= login "hkimura") ; any password
+    (try
+      (let [url (str (env :auth) login) ; bug! (env :auth) is empty.
+            _  (info {:level :info :id "auth?" :msg url})
+          ;;
+            pw (-> (hk/get url {:headers {"Accept" "application/edn"}})
+                   deref
+                   :body
+                   slurp
+                   clojure.edn/read-string
+                   :password)
+          ;;
+            ]
+        (debug "pw:" pw)
+        (hashers/check password pw))
+      (catch Exception e
+        (info {:level :error :msg (.getMessage e)})))))
+
+(comment
+  (-> "http://eq.local:3022/api/user/hkimura1"
+      (hk/get {:headers {"Accept" "application/edn"}})
+      deref
+      :body
+      slurp
+      clojure.edn/read-string
+      :password)
+  (hashers/check "abc" nil)
+  :rcf)
 
 (defmethod ig/init-key :qa.handler.auth/login-post [_ _]
   (fn [{[_ {:strs [login password]}] :ataraxy/result}]

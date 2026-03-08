@@ -7,11 +7,12 @@
     :refer
     [form-to text-field password-field submit-button text-area hidden-field]]
    [hiccup.util :refer [escape-html]]
-   [markdown.core :refer [md-to-html-string]]
+   ;;[markdown.core :refer [md-to-html-string]]
+   [nextjournal.markdown :as md]
    [ring.util.anti-forgery :refer [anti-forgery-field]]))
 
-(def ^:private version "3.0.2")
-(def ^:private updated "2026-03-07 13:03:11")
+(def ^:private version "3.0.3")
+(def ^:private updated "2026-03-08 11:15:58")
 
 (def ^:private wrap-at 80)
 
@@ -37,6 +38,10 @@
   "timestamp 文字列から YYYY/MM/DD hh:mm:ss を抜き出す"
   [tm]
   (subs (str tm) 0 19))
+
+;;
+(defn md-to-html-string [s]
+  (-> s md/parse md/->hiccup))
 
 (defn page [& contents]
   [::response/ok

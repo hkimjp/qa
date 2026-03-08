@@ -5,7 +5,7 @@
 - 投稿や回答があったときにデータベースをアップデートする仕組み
 - (reset) で毎回、クラッシュ。lein clean のあとクラッシュは減る。
 - いいねにアラートつけるか
-
+:
 
     [:a {:href (str "/good/" (:id q) "/" (:id a))
        :onclick "alert('いいと思うところは何？ Markdown で書けないか'); return true;"}
@@ -13,12 +13,24 @@
 
 - filter の初期値を環境変数でもつ。admin がコントロールできる。
   filter から self を抜いて適用する。
-- 過去n時間内に投稿、リプライがあった記事に new マークをつける。
-- cheshiere+hato を http-kit/client+Accept:application/edn でリプレースする。
+- 過去 n 時間内に投稿、リプライがあった記事に new マークをつける。
 - :duct.server.http/jetty {:port #duct/env ["PORT" Int :or 3030]} ができない。
   duct.core.env/coerce
 - systemd への依存をやめる。スタンドアロンな QA に。特に、時刻を見てモードを変える部分。
+- `compose.yaml` must be changed in the staging host.
 
+    ports:
+      - 127.0.0.1:8530:8530
+
+
+## 3.0.3 (2026-03-08)
+
+- replaced `markdown-clj` with `nextjournal/markdown`
+- Syntax error macroexpanding clojure.core/let at (qa/handler/auth.clj:34:5).
+- replaced hato+cheshier by http-kit+(charred)
+- added `192.168.0.15 l22` in `/etc/hosts`.
+  auth server for development is `http://l22/api/user/<login>`.
+- replaced cheshiere+hato by  http-kit/client
 
 ## 3.0.2 (2026-03-07)
 

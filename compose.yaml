@@ -2,6 +2,7 @@ services:
   qa:
     image: eclipse-temurin:25-jre
     environment:
+      - AUTH
       - PORT
       - DATABASE_URL
     working_dir: /usr/src/app
@@ -9,7 +10,7 @@ services:
       - .:/usr/src/app
       - m2:/root/.m2
     ports:
-      - 127.0.0.1:8530:8530
+      - 8530:8530
     entrypoint: >
       sh -c "java --enable-native-access=ALL-UNNAMED -jar qa.jar"
 
