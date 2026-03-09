@@ -6,7 +6,7 @@ if [ -z "$1" ]; then
 fi
 
 
-if [ -x "$/run/current-system/sw/bin/sed" ]; then
+if [ -x "/run/current-system/sw/bin/sed" ]; then
     SED="/run/current-system/sw/bin/sed -E"
 else
     SED="/usr/bin/sed -E"
