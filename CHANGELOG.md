@@ -18,7 +18,8 @@
 
 - button titles
 - readers 絵文字
-
+- fixed bump-version-local.sh
+ 
 ## 3.1.3 (2026-03-08)
 
 - fixed: 「good を押した人」が取れてない。
