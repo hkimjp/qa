@@ -2,7 +2,6 @@
 
 ## Unreleased
 
-
 - (reset) で毎回、クラッシュ。`lein clean` のあとクラッシュは減る。
 - いいねにアラートつけるか
 
@@ -13,8 +12,14 @@
 - 過去 n 時間内に投稿、リプライがあった記事に new マークをつける。
 - :duct.server.http/jetty {:port #duct/env ["PORT" Int :or 3030]} ができない。
   duct.core.env/coerce
+- 誰がいいねしたかを表示する。　
 
+## 3.1.4 (2026-03-10)
 
+- button titles
+- readers 絵文字
+- fixed bump-version-local.sh
+ 
 ## 3.1.3 (2026-03-08)
 
 - fixed: 「good を押した人」が取れてない。
