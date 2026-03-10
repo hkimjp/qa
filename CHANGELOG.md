@@ -14,6 +14,12 @@
   duct.core.env/coerce
 - 誰がいいねしたかを表示する。　
 
+
+## 3.1.5-SNAPSHOT
+
+- a.bk - リンクは青、そのほかは黒で表示する。
+* a の alt 属性
+
 ## 3.1.4 (2026-03-10)
 
 - button titles
