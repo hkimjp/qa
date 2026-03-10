@@ -7,7 +7,7 @@
    [ring.util.anti-forgery :refer [anti-forgery-field]]))
 
 (def ^:private version "3.1.4")
-(def ^:private updated "2026-03-10 13:37:15")
+(def ^:private updated "2026-03-10 13:42:54")
 (def ^:private wrap-at 80)
 (def ^:private readers "👩🏻👩‍💻🧑🏻🧑🏻‍💻")
 
