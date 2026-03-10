@@ -132,11 +132,11 @@
    [:h2 "QA: Questions"]
    [:p "すべての QA に目を通すのがルール。"]
    [:p
+    [:a {:href "/q" :class "btn btn-primary btn-sm"} "🚀 New Question"]
+    " "
     [:a {:href "/recents" :class "btn btn-primary btn-sm"} "最近の回答"]
     " "
     [:a {:href "/goods" :class "btn btn-primary btn-sm"} "最近の 👍"]
-    " "
-    [:a {:href "/q" :class "btn btn-primary btn-sm"} "New Question"]
     " "
     [:a {:href "/about" :class "btn btn-primary btn-sm"} "About"]
     " "
@@ -277,4 +277,3 @@
     [:button.btn.btn-info.btn-sm "投稿"]]
    [:p "投稿ボタンを押さない限り、QA には反映しない。" [:br]
     "思ったとおりじゃない時はブラウザの「戻る」で修正後に投稿する。"]))
-
