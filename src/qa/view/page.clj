@@ -8,8 +8,8 @@
 
 (def ^:private version "3.1.3")
 (def ^:private updated "2026-03-08 19:09:35")
-
 (def ^:private wrap-at 80)
+(def ^:private readers "👩🏻👩‍💻🧑🏻🧑🏻‍💻")
 
 (defn- wrap-aux
   [n s]
@@ -134,14 +134,14 @@
    [:p
     [:a {:href "/recents" :class "btn btn-primary btn-sm"} "最近の回答"]
     " "
-    [:a {:href "/goods" :class "btn btn-primary btn-sm"} "最近の👍"]
+    [:a {:href "/goods" :class "btn btn-primary btn-sm"} "最近の 👍"]
     " "
-    [:a {:href "/q" :class "btn btn-primary btn-sm"} "new question"]
+    [:a {:href "/q" :class "btn btn-primary btn-sm"} "New Question"]
     " "
     [:a {:href "/about" :class "btn btn-primary btn-sm"} "About"]
     " "
-    [:a {:href "/logout" :class "btn btn-warning btn-sm"} "logout"]]
-   [:p [:a {:href "/readers/qs/0"} "readers"]]
+    [:a {:href "/logout" :class "btn btn-warning btn-sm"} "Logout"]]
+   [:p [:a {:href "/readers/qs/0"} readers]]
    ;;id, login 👉 goods, first line (link to answers)
    (for [q qs]
      [:p
@@ -170,7 +170,7 @@
    [:div [:a {:href "/qs" :class "btn btn-success btn-sm"} "QA Top"]]
    [:h4 (:id q) ", " (:nick q) "さんの質問 " (date-time (:ts q)) ","]
    [:pre {:class "question"} (my-escape-html (wrap wrap-at (:q q)))]
-   [:p [:a {:href (str "/readers/as/" (:id q))} "readers"]]
+   [:p [:a {:href (str "/readers/as/" (:id q))} readers]]
    [:hr]
    [:h4 "Answers"]
    (for [a answers]
