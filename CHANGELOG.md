@@ -2,21 +2,43 @@
 
 ## Unreleased
 
-- 投稿や回答があったときにデータベースをアップデートする仕組み
-- (reset) で毎回、クラッシュ。lein clean のあとクラッシュは減る。
+- (reset) で毎回、クラッシュ。`lein clean` のあとクラッシュは減る。
 - いいねにアラートつけるか
-:
 
     [:a {:href (str "/good/" (:id q) "/" (:id a))
        :onclick "alert('いいと思うところは何？ Markdown で書けないか'); return true;"}
       goods]
 
-- filter の初期値を環境変数でもつ。admin がコントロールできる。
-  filter から self を抜いて適用する。
 - 過去 n 時間内に投稿、リプライがあった記事に new マークをつける。
 - :duct.server.http/jetty {:port #duct/env ["PORT" Int :or 3030]} ができない。
   duct.core.env/coerce
+- 誰がいいねしたかを表示する。　
 
+## 3.1.4 (2026-03-10)
+
+- button titles
+- readers 絵文字
+- fixed bump-version-local.sh
+ 
+## 3.1.3 (2026-03-08)
+
+- fixed: 「good を押した人」が取れてない。
+
+    (when (= nick "hkimura")
+           [:a {:href (str "/who-goods/" (:id a))} "　"])
+
+- 最近の投稿と最近のいいねは QA_START 以前もリストする。
+  => まあ良い。QA が増えれば消える。
+
+
+## 3.1.2 (2026-03-08)
+
+- 最近の投稿 -> 最近の回答
+
+## 3.1.1 (2026-03-08)
+
+- abbrev
+- QA-START
 
 ## 3.1.0 (2026-03-08)
 

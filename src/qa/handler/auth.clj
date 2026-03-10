@@ -11,53 +11,25 @@
    [ring.util.response :as resp]
    [taoensso.timbre :refer [info debug] :as timbre]))
 
-(comment
-  (let [url "http://eq.local:3022/api/user/hkimura"]
-    [(-> (hc/get url {:as :json})
-         :body)
-     (-> @(hk/get url {:headers {"Accept" "application/edn"}})
-         :body
-         slurp
-         clojure.edn/read-string)])
-  :rcf)
-
 (defmethod ig/init-key :qa.handler.auth/login [_ _]
   (fn [req]
     (index-page req)))
 
-(comment
-  (if-not (env :auth)
-    "no auth"
-    "auth")
-  :rcf)
-
-(defn auth? [login password]
-  (if-not (env :auth)
-    (= login "hkimura")
-    (try
-      (let [url (str (env :auth) login)
-            _  (info {:level :info :id "auth?" :msg url})
-            pw (-> (hk/get url {:headers {"Accept" "application/edn"}})
-                   deref
-                   :body
-                   slurp
-                   clojure.edn/read-string
-                   :password)]
-        (debug "pw:" pw)
-        (hashers/check password pw))
-      (catch Exception e
-        (info {:level :error :msg (.getMessage e)})))))
-
-(comment
-  (-> "http://eq.local:3022/api/user/hkimura1"
+(defn find-user [login]
+  (-> (str (env :auth) login)
       (hk/get {:headers {"Accept" "application/edn"}})
       deref
       :body
       slurp
-      clojure.edn/read-string
-      :password)
-  (hashers/check "abc" nil)
-  :rcf)
+      clojure.edn/read-string))
+
+(defn auth? [login password]
+  (if-not (env :auth)
+    (= login "hkimura") ; "admin"?
+    (try
+      (hashers/check password (:password (find-user login)))
+      (catch Exception e
+        (info {:level :error :msg (.getMessage e)})))))
 
 (defmethod ig/init-key :qa.handler.auth/login-post [_ _]
   (fn [{[_ {:strs [login password]}] :ataraxy/result}]

@@ -20,7 +20,7 @@ stop:
     echo killed PID ${PID}
 
 up:
-    docker compose up
+    docker compose up -d
 
 down:
     docker compose down
@@ -35,10 +35,14 @@ deploy host: uberjar
     ssh {{host}} mkdir -p qa
     scp Justfile compose.yaml {{host}}:qa/
     scp target/qa-*-standalone.jar {{ host }}:qa/qa.jar
-    ssh {{ host }} 'cd qa && just up'
+    ssh {{ host }} 'cd qa && just restart'
 
 stage:
     just deploy ${STAGE}
 
 prod:
     just deploy ${PROD}
+
+clean:
+    rm -rf target
+    fd -I \.bak$ --exec rm

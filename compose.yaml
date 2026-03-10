@@ -5,12 +5,13 @@ services:
       - AUTH
       - PORT
       - DATABASE_URL
+      - QA_START
     working_dir: /usr/src/app
     volumes:
       - .:/usr/src/app
       - m2:/root/.m2
     ports:
-      - 8530:8530
+      - 127.0.0.1:8530:8530
     entrypoint: >
       sh -c "java --enable-native-access=ALL-UNNAMED -jar qa.jar"
 

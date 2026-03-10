@@ -22,7 +22,7 @@
   (fetch [db n]
     (let [ret (sql/get-by-id (ds-opt db) :questions n)]
      ;;(debug "ret" ret)
-     ret))
+      ret))
 
   (fetch-all [db]
     (sql/query
@@ -30,9 +30,10 @@
      ["select * from questions order by id desc"]))
 
   (fetch-after [db date]
-   (sql/query
-    (ds-opt db)
-    ["select * from questions where ts > ?::DATE order by id desc" date]))
+    (debug "fetch-after" date)
+    (sql/query
+     (ds-opt db)
+     ["select * from questions where ts > date(?) order by id desc" date]))
 
   (count-my-questions
     [db nick]
