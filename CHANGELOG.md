@@ -13,6 +13,7 @@
 - :duct.server.http/jetty {:port #duct/env ["PORT" Int :or 3030]} ができない。
   duct.core.env/coerce
 - 誰がいいねしたかを表示する。　
+- ログインのクリックで平常点を表示。
 
 
 ## 3.1.5-SNAPSHOT
