@@ -9,6 +9,7 @@ services:
       - 127.0.0.1:8530:8530
     entrypoint: >
       sh -c "java --enable-native-access=ALL-UNNAMED -jar qa.jar"
+    restart: unless-stopped
 
   db:
     image: postgres:18
@@ -16,6 +17,7 @@ services:
     volumes:
       - data:/var/lib/postgresql
       - ./dumps:/dumps
+    restart: unless-stopped
 
 volumes:
   data:
