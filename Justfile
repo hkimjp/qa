@@ -1,4 +1,4 @@
-set dotenv-load
+set dotenv-load := true
 
 printenv:
     printenv
@@ -32,8 +32,8 @@ uberjar:
     lein uberjar
 
 deploy host: uberjar
-    ssh {{host}} mkdir -p qa
-    scp Justfile compose.yaml {{host}}:qa/
+    ssh {{ host }} mkdir -p qa
+    scp Justfile compose.yaml {{ host }}:qa/
     scp target/qa-*-standalone.jar {{ host }}:qa/qa.jar
     ssh {{ host }} 'cd qa && just restart'
 
