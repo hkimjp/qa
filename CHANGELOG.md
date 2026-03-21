@@ -15,8 +15,9 @@
 - ログインのクリックで平常点を表示。
 * a の alt 属性
 
-## 3.1.5-SNAPSHOT
+## 3.1.5
 
+- improved `.env` and `compose.yaml`
 - fixed - app.melt GMT bug
 - :duct.server.http/jetty {:port #duct/env ["PORT" Int :or 3030]} ができなかったはずだが、できる。
 - a.bk - リンクは青、そのほかは黒で表示する。
