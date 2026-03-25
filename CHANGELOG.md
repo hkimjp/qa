@@ -15,6 +15,10 @@
 - ログインのクリックで平常点を表示。
 * a の alt 属性
 
+## 3.1.6-SNAPSHOT
+
+- /qa - id、回答数、qa 1st line、質問者の順に変更。
+
 ## 3.1.5
 
 - improved `.env` and `compose.yaml`
