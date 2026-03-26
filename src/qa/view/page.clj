@@ -147,13 +147,9 @@
    (for [q qs]
      [:p
       (:id q)
-      ", "
-      (str " 👉" (answer-count cs (:id q)))
-      " , "
+      (format ", 👉%d , " (answer-count cs (:id q)))
       [:a.bk {:href (str "/as/" (:id q))} (->> (:q q) (abbrev 30))]
-      [:a.link-underline-light
-       {:href (str "/my-goods/" (:nick q))}
-       (format "(%s)" (:nick q))]])
+      [:a.bk {:href (str "/my-goods/" (:nick q))} (format "(%s)" (:nick q))]])
    [:p [:a {:href "/q" :class "btn btn-primary btn-sm"} new-question]]))
 
 ;;👁️🚀✔️☑️➰➿⚯☞⍇⍈
