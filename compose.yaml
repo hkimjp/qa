@@ -1,30 +1,23 @@
 services:
   qa:
     image: eclipse-temurin:25-jre
-    environment:
-      - AUTH
-      - PORT
-      - DATABASE_URL
-      - QA_START
+    env_file: .env
     working_dir: /usr/src/app
     volumes:
       - .:/usr/src/app
-      - m2:/root/.m2
     ports:
-      - 127.0.0.1:8530:8530
+      - "127.0.0.1:${PORT}:${PORT}"
     entrypoint: >
       sh -c "java --enable-native-access=ALL-UNNAMED -jar qa.jar"
+    restart: unless-stopped
 
   db:
     image: postgres:18
-    environment:
-      - POSTGRES_PASSWORD
+    env_file: .env
     volumes:
       - data:/var/lib/postgresql
       - ./dumps:/dumps
+    restart: unless-stopped
 
 volumes:
-  m2:
-    external: true
   data:
-    driver: local

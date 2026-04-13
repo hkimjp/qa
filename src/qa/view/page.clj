@@ -6,10 +6,11 @@
    [nextjournal.markdown :as md]
    [ring.util.anti-forgery :refer [anti-forgery-field]]))
 
-(def ^:private version "3.1.4")
-(def ^:private updated "2026-03-10 13:37:15")
+(def ^:private version "3.2.0")
+(def ^:private updated "2026-04-13 13:39:17")
 (def ^:private wrap-at 80)
 (def ^:private readers "👩🏻👩‍💻🧑🏻🧑🏻‍💻")
+(def ^:private new-question "🚀 質問を出す")
 
 (defn- wrap-aux
   [n s]
@@ -132,11 +133,11 @@
    [:h2 "QA: Questions"]
    [:p "すべての QA に目を通すのがルール。"]
    [:p
+    [:a {:href "/q" :class "btn btn-primary btn-sm"} new-question]
+    " "
     [:a {:href "/recents" :class "btn btn-primary btn-sm"} "最近の回答"]
     " "
     [:a {:href "/goods" :class "btn btn-primary btn-sm"} "最近の 👍"]
-    " "
-    [:a {:href "/q" :class "btn btn-primary btn-sm"} "New Question"]
     " "
     [:a {:href "/about" :class "btn btn-primary btn-sm"} "About"]
     " "
@@ -146,13 +147,10 @@
    (for [q qs]
      [:p
       (:id q)
-      ", "
-      [:a.link-underline-light {:href (str "/my-goods/" (:nick q))} (:nick q)]
-      " "
-      (str " 👉 " (answer-count cs (:id q)))
-      ", "
-      [:a {:href (str "/as/" (:id q))} (->> (:q q) (abbrev 30))]])
-   [:p [:a {:href "/q" :class "btn btn-primary btn-sm"} "new question"]]))
+      (format ", 👉%d , " (answer-count cs (:id q)))
+      [:a.bk {:href (str "/as/" (:id q))} (->> (:q q) (abbrev 30))]
+      [:a.bk {:href (str "/my-goods/" (:nick q))} (format "(%s)" (:nick q))]])
+   [:p [:a {:href "/q" :class "btn btn-primary btn-sm"} new-question]]))
 
 ;;👁️🚀✔️☑️➰➿⚯☞⍇⍈
 
@@ -225,9 +223,7 @@
       ", "
       (date-time (:ts a))
       " "
-      [:a
-       {:href (str "/as/" (:q_id a))}
-       (h/raw (ss 28 (:a a)))]
+      [:a.bk {:href (str "/as/" (:q_id a))} (h/raw (ss 28 (:a a)))]
       "... by " (:nick a)])
    [:p [:a {:href "/qs" :class "btn btn-success btn-sm"} "QA Top"]]))
 
@@ -241,9 +237,7 @@
       ", "
       (date-time (:ts a))
       " "
-      [:a
-       {:href  (str "/as/" (:q_id a))}
-       (ss 28 (:q a)) "..."]])))
+      [:a.bk {:href  (str "/as/" (:q_id a))} (ss 28 (:q a)) "..."]])))
 
 (defn readers-page [readers since]
   (let [uniq-readers (->> (map :login readers)
@@ -252,7 +246,7 @@
                                     [:a {:href (str "/my-goods/" user)} user])))]
     (page
      [:h2 "QA: Who read since " since]
-     [:p "ほんと、みんな、QA 読まないんだな。点数稼ぎの 👍 は心が冷えるよ。"]
+     [:p "ほんと、みんな、QA 読まない。点数稼ぎの 👍 は心が冷える。"]
      [:p #_(->> uniq-readers
                 (interpose " ")
                 (apply str))
@@ -274,7 +268,6 @@
     (h/raw (anti-forgery-field))
     [:input {:type "hidden" :id "q_id" :name "q_id" :value q_id}]
     [:input {:type "hidden" :id "answer" :name "answer" :value answer}]
-    [:button.btn.btn-info.btn-sm "投稿"]]
+    [:button.btn.btn-primary.btn-sm "投稿"]]
    [:p "投稿ボタンを押さない限り、QA には反映しない。" [:br]
-    "思ったとおりじゃない時はブラウザの「戻る」で修正後に投稿する。"]))
-
+    "表示が思ったとおりじゃない時はブラウザの「戻る」で修正後に投稿する。"]))
