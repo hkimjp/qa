@@ -8,7 +8,7 @@
    [buddy/buddy-hashers "2.0.167"]
    [clojure.java-time/clojure.java-time "1.4.3"]
    [com.github.seancorfield/next.jdbc "1.3.1093"]
-   [com.fasterxml.jackson.core/jackson-core "2.21.1"]
+   [com.fasterxml.jackson.core/jackson-core "2.21.2"]
    [duct/core "0.8.1"]
    [duct/module.ataraxy "0.3.0"]
    [duct/module.logging "0.5.0"]
@@ -16,7 +16,7 @@
    [duct/module.web "0.7.4"]
    [environ/environ "1.2.0"]
    [hiccup/hiccup "2.0.0"]
-   [io.github.nextjournal/markdown "0.7.222"]
+   [io.github.nextjournal/markdown "0.7.225"]
    [org.clojure/clojure "1.12.4"]
    [org.postgresql/postgresql "42.7.10"]
    [http-kit/http-kit "2.8.1"]
@@ -24,8 +24,8 @@
    [ring/ring-core "1.15.3"]
    [ring/ring-defaults "0.7.0"]
    [ring/ring-jetty-adapter "1.15.3"]
-   [dev.weavejester/medley "1.9.0"]
-   [com.taoensso/timbre "6.5.0"]] ; no 6.8.0. should stay.
+   [dev.weavejester/medley "1.10.0"]
+   [com.taoensso/timbre "6.8.0"]] ; no 6.8.0. should stay.
 
   :plugins [[duct/lein-duct "0.12.3"]]
   :main ^:skip-aot qa.main
@@ -40,7 +40,7 @@
    :profiles/dev {}
    :project/dev  {:source-paths   ["dev/src"]
                   :resource-paths ["dev/resources"]
-                  :dependencies   [[integrant/repl "0.5.0"]
+                  :dependencies   [[integrant/repl "0.5.1"]
                                    [hawk "0.2.11"]
                                    [eftest "0.6.0"]
                                    [kerodon "0.9.1"]]}})
