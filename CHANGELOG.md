@@ -22,10 +22,12 @@
 | :file       | :name                                   | :current | :latest |
 |-------------|-----------------------------------------|----------|---------|
 | project.clj | com.fasterxml.jackson.core/jackson-core | 2.21.1   | 2.21.2  |
-|             | com.taoensso/timbre                     | 6.5.0    | 6.8.0   |
 |             | dev.weavejester/medley                  | 1.9.0    | 1.10.0  |
 |             | integrant/repl                          | 0.5.0    | 0.5.1   |
 |             | io.github.nextjournal/markdown          | 0.7.222  | 0.7.225 |
+
+- timbre must be stay "6.5.0". when use "6.8.0", can not `(go)` by errors.
+- copied `dumps/qa-2026-04-13.dump` from `app.melt:qa`
 
 ## 3.1.6 (2026-03-25)
 
