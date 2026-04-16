@@ -24,8 +24,8 @@
    [ring/ring-core "1.15.3"]
    [ring/ring-defaults "0.7.0"]
    [ring/ring-jetty-adapter "1.15.3"]
-   [dev.weavejester/medley "1.9.0"]
-   [com.taoensso/timbre "6.5.0"]] ; no 6.8.0. should stay.
+   ; [dev.weavejester/medley "1.9.0"]
+   [com.taoensso/timbre "6.5.0"]] ; no 6.8.0. should stay 6.5.0.
 
   :plugins [[duct/lein-duct "0.12.3"]]
   :main ^:skip-aot qa.main
