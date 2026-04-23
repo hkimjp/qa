@@ -6,8 +6,8 @@
    [nextjournal.markdown :as md]
    [ring.util.anti-forgery :refer [anti-forgery-field]]))
 
-(def ^:private version "3.3.0")
-(def ^:private updated "2026-04-23 19:30:22")
+(def ^:private version "3.3.1")
+(def ^:private updated "2026-04-23 19:50:03")
 (def ^:private wrap-at 80)
 (def ^:private readers "👩🏻👩‍💻🧑🏻🧑🏻‍💻")
 (def ^:private new-question "🚀 質問を出す")
