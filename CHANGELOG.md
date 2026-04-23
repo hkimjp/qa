@@ -15,7 +15,19 @@
 - ログインのクリックで平常点を表示。
 * a の alt 属性
 
-## 3.3.0-SNAPSSHOT
+## 3.3.1
+
+- updated libraries
+
+| :file       | :name                   | :current | :latest |
+|-------------|-------------------------|----------|---------|
+| project.clj | ring/ring-core          | 1.15.3   | 1.15.4  |
+|             | ring/ring-jetty-adapter | 1.15.3   | 1.15.4  |
+
+- stay taoensso/telemere 3.5.0
+
+
+## 3.3.0 (2026-04-23)
 
 - blockquote css - navy
 
