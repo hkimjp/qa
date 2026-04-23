@@ -15,6 +15,14 @@
 - ログインのクリックで平常点を表示。
 * a の alt 属性
 
+## 3.3.0-SNAPSSHOT
+
+- blockquote css - navy
+
+```
+  border-left: 3px solid #000080;
+```
+
 ## 3.2.0 (2026-04-13)
 
 - updated libraries
