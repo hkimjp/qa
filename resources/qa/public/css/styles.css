@@ -57,3 +57,9 @@ a.bk {
 a:hover {
   text-decoration: underline;
 }
+
+blockquote {
+  position: relative;
+  border-left: 3px solid #000080;
+  padding-left: 2rem;
+}
