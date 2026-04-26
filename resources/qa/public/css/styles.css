@@ -1,65 +1,97 @@
-textarea#question {width: 100%; height: 200px; background: #ffc;}
-textarea#answer   {width: 100%; height: 200px; background: #cfc;}
-textarea#md       {width: 100%; height: 400px; background: #cfc;}
+textarea#question {
+    width: 100%;
+    height: 200px;
+    background: #ffc;
+}
+textarea#answer {
+    width: 100%;
+    height: 200px;
+    background: #cfc;
+}
+textarea#md {
+    width: 100%;
+    height: 400px;
+    background: #cfc;
+}
 
-img#odyssey {width: 100%;}
+img#odyssey {
+    width: 100%;
+}
 
-p.question {font-size: medium;}
-p.answer   {margin-left: 1em;}
-p.good     {margin-left: 1em;}
+p.question {
+    font-size: medium;
+}
+p.answer {
+    margin-left: 1em;
+}
+p.good {
+    margin-left: 1em;
+}
 
-pre.answer   {margin-left: 1em;}
-span.nick  {font-weight: bold;}
+pre.answer {
+    margin-left: 1em;
+}
+span.nick {
+    font-weight: bold;
+}
 
-.red     {color: red;}
-.sm      {font-size: small;}
-.skyblue {color: royalblue;}
+.red {
+    color: red;
+}
+.sm {
+    font-size: small;
+}
+.skyblue {
+    color: royalblue;
+}
 
 table {
-  border-collapse: collapse;
+    border-collapse: collapse;
 }
-table, th, td {
-  border: 1px solid black;
+table,
+th,
+td {
+    border: 1px solid black;
 }
 
 /* use as question header */
 pre.question {
-  font-size: medium;
-  background-color:white;
-  color: black;
+    font-size: medium;
+    background-color: white;
+    color: black;
 }
 
 /* use inside triple back quotes */
 pre {
-  background-color:black;
-  color: white;
+    background-color: black;
+    color: white;
 }
 code {
-  font-family: 'Courier New', Courier, monospace;
-  word-wrap: break-word;
-  font-size: 16px;
+    font-family: "Courier New", Courier, monospace;
+    word-wrap: break-word;
+    font-size: 16px;
 }
 
 div.preview {
-  border: solid 1pt dimgray;
-  padding: 5px;
+    border: solid 1pt dimgray;
+    padding: 5px;
 }
 
 a {
-  color:blue;
-  text-decoration: none;
+    color: blue;
+    text-decoration: none;
 }
 
 a.bk {
-  color:black;
+    color: black;
 }
 
 a:hover {
-  text-decoration: underline;
+    text-decoration: underline;
 }
 
 blockquote {
-  position: relative;
-  border-left: 3px solid #DA8596;
-  padding-left: 2rem;
+    position: relative;
+    border-left: 3px solid #da8596;
+    padding-left: 2rem;
 }
