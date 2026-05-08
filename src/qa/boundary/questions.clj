@@ -1,7 +1,6 @@
 (ns qa.boundary.questions
   (:require
    [duct.database.sql]
-   #_[environ.core :refer [env]]
    [next.jdbc.sql :as sql]
    [qa.boundary.utils :refer [ds-opt]]
    [taoensso.timbre :refer [debug]]))
@@ -21,7 +20,6 @@
 
   (fetch [db n]
     (let [ret (sql/get-by-id (ds-opt db) :questions n)]
-     ;;(debug "ret" ret)
       ret))
 
   (fetch-all [db]

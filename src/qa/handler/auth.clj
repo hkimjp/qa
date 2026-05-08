@@ -2,9 +2,7 @@
   (:require
    [buddy.hashers :as hashers]
    [clojure.edn]
-   ; [clojure.string :as str]
    [environ.core :refer [env]]
-   ; [hato.client :as hc]
    [org.httpkit.client :as hk]
    [integrant.core :as ig]
    [qa.view.page :refer [index-page]]

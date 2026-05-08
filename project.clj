@@ -40,7 +40,13 @@
    :profiles/dev {}
    :project/dev  {:source-paths   ["dev/src"]
                   :resource-paths ["dev/resources"]
-                  :dependencies   [[integrant/repl "0.5.1"]; 0.3.3
+                  :dependencies   [[integrant/repl "0.5.1"]
                                    [hawk "0.2.11"]
                                    [eftest "0.6.0"]
-                                   [kerodon "0.9.1"]]}})
+                                   [kerodon "0.9.1"]]}}
+  :jvm-opts    ["--add-opens=java.base/java.nio=ALL-UNNAMED"
+                "--add-opens=java.base/sun.nio.ch=ALL-UNNAMED"
+                "--enable-native-access=ALL-UNNAMED"
+                "--sun-misc-unsafe-memory-access=allow"])
+
+
