@@ -16,7 +16,17 @@
 * a の alt 属性
 
 
-## 3.3.3-SNAPSHOT
+## 3.3.4-SNAPSHOT
+
+- added `<!DOCTYPE html>`
+- hiccup escape
+
+```diff
+- "function ok() {return window.confirm('OK?');}"
++ (h/raw "function ok() {return window.confirm('OK?');}")]
+```
+
+## 3.3.3
 
 - added jvm-opts to `project.clj`
 
