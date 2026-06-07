@@ -1,4 +1,4 @@
-(defproject qa "3.3.0"
+(defproject qa "3.3.4"
   :description "qa system for my literacy classes"
   :url "https://qa.melt.kyutech.ac.jp"
   :min-lein-version "2.0.0"
@@ -21,9 +21,9 @@
    [org.postgresql/postgresql "42.7.10"]
    [http-kit/http-kit "2.8.1"]
    [ring/ring-anti-forgery "1.4.0"]
-   [ring/ring-core "1.15.3"]
+   [ring/ring-core "1.15.4"]
    [ring/ring-defaults "0.7.0"]
-   [ring/ring-jetty-adapter "1.15.3"]
+   [ring/ring-jetty-adapter "1.15.4"]
    ; [dev.weavejester/medley "1.9.0"]
    [com.taoensso/timbre "6.5.0"]] ; no 6.8.0. should stay 6.5.0.
 
@@ -40,7 +40,13 @@
    :profiles/dev {}
    :project/dev  {:source-paths   ["dev/src"]
                   :resource-paths ["dev/resources"]
-                  :dependencies   [[integrant/repl "0.5.1"]; 0.3.3
+                  :dependencies   [[integrant/repl "0.5.1"]
                                    [hawk "0.2.11"]
                                    [eftest "0.6.0"]
-                                   [kerodon "0.9.1"]]}})
+                                   [kerodon "0.9.1"]]}}
+  :jvm-opts    ["--add-opens=java.base/java.nio=ALL-UNNAMED"
+                "--add-opens=java.base/sun.nio.ch=ALL-UNNAMED"
+                "--enable-native-access=ALL-UNNAMED"
+                "--sun-misc-unsafe-memory-access=allow"])
+
+

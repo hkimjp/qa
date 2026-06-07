@@ -2,11 +2,7 @@
   (:require
    [duct.database.sql]
    [next.jdbc.sql :as sql]
-   ;[next.jdbc.result-set :as rs]
-   [qa.boundary.utils :refer [ds-opt]]
-   #_[taoensso.timbre :refer [debug]]))
-
-; (def ^:private bfn {:builder-fn rs/as-unqualified-lower-maps})
+   [qa.boundary.utils :refer [ds-opt]]))
 
 (defprotocol Goods
   (create! [db q-id a-id nick])

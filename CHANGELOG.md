@@ -15,7 +15,54 @@
 - ログインのクリックで平常点を表示。
 * a の alt 属性
 
-## 3.3.0-SNAPSSHOT
+
+## 3.3.4 (2026-06-07)
+
+- added `<!DOCTYPE html>`
+- hiccup escape
+
+```diff
+- "function ok() {return window.confirm('OK?');}"
++ (h/raw "function ok() {return window.confirm('OK?');}")]
+```
+
+## 3.3.3
+
+- added jvm-opts to `project.clj`
+
+```clojure
+:jvm-opts    ["--add-opens=java.base/java.nio=ALL-UNNAMED"
+                "--add-opens=java.base/sun.nio.ch=ALL-UNNAMED"
+                "--enable-native-access=ALL-UNNAMED"
+                "--sun-misc-unsafe-memory-access=allow"]
+```
+
+still remains warning
+
+```
+dev=> (go)
+WARNING: abs already refers to: #'clojure.core/abs in namespace: medley.core, being replaced by: #'medley.core/abs
+:duct.server.http.jetty/starting-server {:port 3030}
+:initiated
+```
+
+## 3.3.2 (2026-04-26)
+
+- changed - color of quote headline, navy to #da8596;
+
+## 3.3.1
+
+- updated libraries
+
+| :file       | :name                   | :current | :latest |
+|-------------|-------------------------|----------|---------|
+| project.clj | ring/ring-core          | 1.15.3   | 1.15.4  |
+|             | ring/ring-jetty-adapter | 1.15.3   | 1.15.4  |
+
+- stay taoensso/telemere 3.5.0
+
+
+## 3.3.0 (2026-04-23)
 
 - blockquote css - navy
 

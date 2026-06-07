@@ -6,7 +6,6 @@
    [integrant.core :as ig]
    [java-time.api :as jt]
    [next.jdbc :as jdbc]
-   ;;[next.jdbc.sql :as sql]
    [next.jdbc.result-set :as rs]
    [qa.boundary.answers :as answers]
    [qa.boundary.goods :as goods]
