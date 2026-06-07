@@ -16,7 +16,7 @@
 * a の alt 属性
 
 
-## 3.3.4-SNAPSHOT
+## 3.3.4 (2026-06-07)
 
 - added `<!DOCTYPE html>`
 - hiccup escape
