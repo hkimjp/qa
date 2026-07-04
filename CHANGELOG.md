@@ -15,6 +15,17 @@
 - ログインのクリックで平常点を表示。
 * a の alt 属性
 
+## 3.3.5
+
+- styles.css
+
+```diff
+pre {
+    background-color: black;
+    color: white;
++    padding-left:5px;
+}
+```
 
 ## 3.3.4 (2026-06-07)
 
