@@ -16,6 +16,29 @@
 * a の alt 属性
 
 
+## 3.3.5 (2026-07-04)
+
+- styles.css
+
+```diff
+pre {
+    background-color: black;
+    color: white;
++    padding-left:5px;
+}
+```
+- updated libaries
+
+| :file       | :name                                   | :current | :latest  |
+|-------------|-----------------------------------------|----------|----------|
+| project.clj | com.fasterxml.jackson.core/jackson-core | 2.21.2   | 2.22.0   |
+|             | com.github.seancorfield/next.jdbc       | 1.3.1093 | 1.3.1108 |
+|             | org.clojure/clojure                     | 1.12.4   | 1.12.5   |
+|             | org.postgresql/postgresql               | 42.7.10  | 42.7.11  |
+
+- stay  com.taoensso/timbre 6.5.0
+
+
 ## 3.3.4 (2026-06-07)
 
 - added `<!DOCTYPE html>`
