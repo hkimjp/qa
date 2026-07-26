@@ -15,6 +15,16 @@
 - ログインのクリックで平常点を表示。
 * a の alt 属性
 
+## 3.3.7 (2026-07-26)
+
+- changed `.env`
+
+```
+AUTH = http://l22.home/api/user/
+```
+
+- removed unsafe-sun something from jvm-opts
+
 ## 3.3.6 (2026-07-04)
 
 | :file       | :name                                   | :current | :latest  |

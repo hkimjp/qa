@@ -1,4 +1,4 @@
-(defproject qa "3.3.6"
+(defproject qa "3.3.7"
   :description "qa system for my literacy classes"
   :url "https://qa.melt.kyutech.ac.jp"
   :min-lein-version "2.0.0"
@@ -46,7 +46,6 @@
                                    [kerodon "0.9.1"]]}}
   :jvm-opts    ["--add-opens=java.base/java.nio=ALL-UNNAMED"
                 "--add-opens=java.base/sun.nio.ch=ALL-UNNAMED"
-                "--enable-native-access=ALL-UNNAMED"
-                "--sun-misc-unsafe-memory-access=allow"])
+                "--enable-native-access=ALL-UNNAMED" ])
 
 

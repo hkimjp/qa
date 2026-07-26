@@ -7,19 +7,23 @@
    [integrant.core :as ig]
    [qa.view.page :refer [index-page]]
    [ring.util.response :as resp]
-   [taoensso.timbre :refer [info debug] :as timbre]))
+   [taoensso.timbre :refer [info debug]]))
 
 (defmethod ig/init-key :qa.handler.auth/login [_ _]
   (fn [req]
     (index-page req)))
 
 (defn find-user [login]
-  (-> (str (env :auth) login)
-      (hk/get {:headers {"Accept" "application/edn"}})
-      deref
-      :body
-      slurp
-      clojure.edn/read-string))
+  (let [url (str (env :auth) login)
+        resp (hk/get url {:headers {"Accept" "application/edn"}})]
+    (when-not (some? (:error resp))
+      (throw (Exception. (str "check url, " url))))
+    (info "resp" (:error resp))
+    (-> resp
+        deref
+        :body
+        slurp
+        clojure.edn/read-string)))
 
 (defn auth? [login password]
   (if-not (env :auth)
@@ -31,7 +35,7 @@
 
 (defmethod ig/init-key :qa.handler.auth/login-post [_ _]
   (fn [{[_ {:strs [login password]}] :ataraxy/result}]
-    (info "login password=>" login password)
+    (info "login =>" login)
     (if (and (seq login) (auth? login password))
       (let [ret (-> (resp/redirect "/qs")
                     (assoc-in [:session :identity] login))]
