@@ -46,7 +46,6 @@
                                    [kerodon "0.9.1"]]}}
   :jvm-opts    ["--add-opens=java.base/java.nio=ALL-UNNAMED"
                 "--add-opens=java.base/sun.nio.ch=ALL-UNNAMED"
-                "--enable-native-access=ALL-UNNAMED"
-                "--sun-misc-unsafe-memory-access=allow"])
+                "--enable-native-access=ALL-UNNAMED" ])
 
 
