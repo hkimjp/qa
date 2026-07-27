@@ -15,12 +15,11 @@
 
 (defn find-user [login]
   (let [url (str (env :auth) login)
-        resp (hk/get url {:headers {"Accept" "application/edn"}})]
-    (when-not (some? (:error resp))
+        resp @(hk/get url {:headers {"Accept" "application/edn"}})]
+    (when (some? (:error resp))
+      (info "auth error" resp)
       (throw (Exception. (str "check url, " url))))
-    (info "resp" (:error resp))
     (-> resp
-        deref
         :body
         slurp
         clojure.edn/read-string)))
